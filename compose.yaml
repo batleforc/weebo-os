@@ -1,0 +1,2 @@
+include:
+  - .compose/compose.zot.yaml

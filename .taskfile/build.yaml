@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  oci:
+    desc: "Build boot-c oci image"
+    vars:
+      folder: '{{.folder | default "fedora" }}'
+    cmds:
+      - echo "Building boot-c image from folder {{ .folder }}"
+      - docker build -t localhost:8080/boot-c/{{ .folder }}:latest -f {{.folder}}/Containerfile {{.folder}}
