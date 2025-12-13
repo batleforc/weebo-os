@@ -1,0 +1,17 @@
+[customizations.installer.kickstart]
+contents = """
+# Basic setup
+graphical
+network --bootproto=dhcp --device=link --activate
+# Basic partitioning
+clearpart --all --initlabel --disklabel=gpt
+reqpart --add-boot
+part / --grow --fstype xfs
+
+firewall --disabled
+services --enabled=sshd
+
+# Only inject a SSH key for root
+rootpw --iscrypted locked
+reboot --eject
+"""

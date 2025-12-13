@@ -20,6 +20,7 @@ tasks:
         --privileged
         --pull=always
         --security-opt label=type:unconfined_t
+        -v ./config.toml:/config.toml:ro
         -v /var/lib/containers/storage:/var/lib/containers/storage
         -v ./output:/output
         quay.io/centos-bootc/bootc-image-builder:latest

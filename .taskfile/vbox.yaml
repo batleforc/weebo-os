@@ -1,0 +1,59 @@
+version: "3"
+
+tasks:
+  create:
+    desc: "Create VirtualBox VM based on boot-c install ISO"
+    vars:
+      vm_name: '{{.vm_name | default "boot-c-vm" }}'
+      iso_path: '{{.iso_path | default "./output/bootiso/install.iso" }}'
+    cmds:
+      - echo "Creating VirtualBox VM named {{ .vm_name }} with ISO {{ .iso_path }}"
+      - |
+        VBoxManage createvm --name {{ .vm_name }} --ostype "Linux_64" --register
+      - |
+        VBoxManage modifyvm {{ .vm_name }} \
+          --memory 8192 \
+          --cpus 2 \
+          --nic1 nat \
+          --boot1 dvd \
+          --vrde on
+      - |
+        VBoxManage storagectl {{ .vm_name }} --name "SATA Controller" --add sata --controller IntelAhci
+      - |
+        VBoxManage storageattach {{ .vm_name }} \
+          --storagectl "SATA Controller" \
+          --port 0 --device 0 --type dvddrive --medium {{ .iso_path }}
+      - | # Create a virtual hard disk
+        VBoxManage createmedium disk --filename "data/vdi/{{ .vm_name }}.vdi" --size 20000 --format VDI
+      - |
+        VBoxManage storageattach {{ .vm_name }} \
+          --storagectl "SATA Controller" \
+          --port 1 --device 0 --type hdd --medium "data/vdi/{{ .vm_name }}.vdi"
+      - |
+        echo "VirtualBox VM {{ .vm_name }} created successfully."
+  start:
+    desc: "Start VirtualBox VM"
+    vars:
+      vm_name: '{{.vm_name | default "boot-c-vm" }}'
+    cmds:
+      - echo "Starting VirtualBox VM named {{ .vm_name }}"
+      - |
+        VBoxManage startvm {{ .vm_name }} --type headless
+  stop:
+    desc: "Stop VirtualBox VM"
+    vars:
+      vm_name: '{{.vm_name | default "boot-c-vm" }}'
+    cmds:
+      - echo "Stopping VirtualBox VM named {{ .vm_name }}"
+      - |
+        VBoxManage controlvm {{ .vm_name }} acpipowerbutton
+  delete:
+    desc: "Delete VirtualBox VM"
+    vars:
+      vm_name: '{{.vm_name | default "boot-c-vm" }}'
+    cmds:
+      - echo "Deleting VirtualBox VM named {{ .vm_name }}"
+      - |
+        VBoxManage unregistervm {{ .vm_name }} --delete
+      - |
+        rm -rf data/vdi/{{ .vm_name }}.vdi
