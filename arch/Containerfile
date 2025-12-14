@@ -1,5 +1,0 @@
-FROM ghcr.io/bootcrew/arch-bootc:latest
-
-RUN pacman -S hyprland \
-    --noconfirm \
-    --needed

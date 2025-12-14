@@ -1,0 +1,28 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - solopasha/hyprland
+          - scottames/ghostty
+    install:
+      install-weak-deps: false
+      packages:
+        - ghostty
+        - hyprland
+        - waybar
+        - xdg-desktop-portal-hyprland
+        - hyprpaper
+        - hyprlock
+        - hypridle
+        - hyprland-qtutils
+
+  - type: files
+    files:
+      - source: system/hyprland
+        destination: /
+
+  - type: script
+    scripts:
+      - removeunprofessionalwallpapers.sh
+      - sethyprlandwaybarmodules.sh

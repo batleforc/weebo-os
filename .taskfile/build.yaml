@@ -1,29 +1,21 @@
 version: "3"
 
 tasks:
+  containerfile:
+    desc: "Generate Containerfile for boot-c"
+    vars:
+      recipe: '{{.recipe | default "recipe" }}'
+    cmds:
+      - bluebuild generate ./recipes/{{ .recipe }}.yml -o Containerfile
   oci:
     desc: "Build boot-c oci image"
     vars:
-      folder: '{{.folder | default "fedora" }}'
+      recipe: '{{.recipe | default "recipe" }}'
     cmds:
-      - echo "Building boot-c image from folder {{ .folder }}"
-      - sudo podman build -t localhost:8080/boot-c/{{ .folder }}:latest -f {{.folder}}/Containerfile {{.folder}}
-  install-iso:
+      - bluebuild build ./recipes/{{ .recipe }}.yml
+  iso:
     desc: "Build boot-c install iso"
     vars:
-      folder: '{{.folder | default "fedora" }}'
+      recipe: '{{.recipe | default "recipe" }}'
     cmds:
-      - echo "Building boot-c install iso"
-      - sudo podman run
-        --rm
-        -it
-        --privileged
-        --pull=always
-        --security-opt label=type:unconfined_t
-        -v ./config.toml:/config.toml:ro
-        -v /var/lib/containers/storage:/var/lib/containers/storage
-        -v ./output:/output
-        quay.io/centos-bootc/bootc-image-builder:latest
-        --type anaconda-iso
-        --use-librepo=True
-        localhost:8080/boot-c/{{ .folder }}:latest --rootfs xfs
+      - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-{{ .recipe }}.iso recipe recipes/{{ .recipe }}.yml

@@ -1,2 +1,9 @@
+# Beta purposed
 output
 data/
+
+# Blue Bird purposed
+cosign.key
+cosign.private
+/Containerfile
+/.bluebuild-scripts_*

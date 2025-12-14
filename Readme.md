@@ -18,3 +18,5 @@
 - [BaseCamp - Omarchy](https://github.com/basecamp/omarchy)
 - [BootC Image Builder](https://github.com/osbuild/bootc-image-builder)
 - [Fedora Hyprland](https://discussion.fedoraproject.org/t/tutorial-fedora-43-install-hyprland-from-scratch/168386)
+- [Blue Bird](https://blue-build.org/)
+- [Wayblue](https://github.com/wayblueorg/wayblue)

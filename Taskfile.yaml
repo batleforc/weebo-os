@@ -4,3 +4,4 @@ includes:
   services: .taskfile/services.yaml
   build: .taskfile/build.yaml
   vbox: .taskfile/vbox.yaml
+  build-bta: .taskfile/build-bta.yaml
