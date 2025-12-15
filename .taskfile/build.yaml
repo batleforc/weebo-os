@@ -19,3 +19,7 @@ tasks:
       recipe: '{{.recipe | default "recipe" }}'
     cmds:
       - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-{{ .recipe }}.iso recipe recipes/{{ .recipe }}.yml
+  iso-remote:
+    desc: "Build boot-c install iso with remote sources"
+    cmds:
+      - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-remote.iso image ghcr.io/batleforc/weebo-os:latest
