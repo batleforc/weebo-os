@@ -22,4 +22,4 @@ tasks:
   iso-remote:
     desc: "Build boot-c install iso with remote sources"
     cmds:
-      - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-remote.iso image ghcr.io/batleforc/weebo-os:latest
+      - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-remote.iso image ghcr.io/batleforc/weebo-os
