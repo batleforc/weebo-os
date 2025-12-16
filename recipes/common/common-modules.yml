@@ -45,6 +45,7 @@ modules:
 
         # environment
         - fzf
+        - glibc-langpack-fr
         - tuned-ppd
         - xorg-x11-server-Xwayland
         - headsetcontrol
