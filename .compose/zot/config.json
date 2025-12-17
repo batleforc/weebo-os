@@ -1,0 +1,35 @@
+{
+  "distSpecVersion": "1.0.1",
+  "storage": {
+    "rootDirectory": "/tmp/zot",
+    "dedupe": true,
+    "gc": true,
+    "gcDelay": "1h",
+    "gcInterval": "24h"
+  },
+  "http": {
+    "address": "0.0.0.0",
+    "port": "8080",
+    "externalUrl": "https://localhost:8080",
+    "accessControl": {
+      "repositories": {
+        "**": {
+          "policies": [],
+          "defaultPolicy": [],
+          "anonymousPolicy": ["read", "create", "update", "delete"]
+        }
+      }
+    }
+  },
+  "log": {
+    "level": "debug"
+  },
+  "extensions": {
+    "ui": {
+      "enable": true
+    },
+    "search": {
+      "enable": true
+    }
+  }
+}
