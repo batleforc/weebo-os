@@ -6,7 +6,7 @@ name: weebo-os
 description: A customized Atomic os responding to the weebo's spirit.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: quay.io/fedora-ostree-desktops/base-atomic
+base-image: ghcr.io/ublue-os/silverblue-main
 image-version: 43
 
 # module configuration, executed in order
