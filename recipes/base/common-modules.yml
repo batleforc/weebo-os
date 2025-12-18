@@ -34,15 +34,16 @@ modules:
         - firefox
         - firefox-langpacks
 
+  - type: files
+    files:
+      - source: system
+        destination: /
+
   - type: script
     scripts:
       - ensureautoupdates.sh
       - default-editor.sh
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
-
-  - type: files
-    files:
-      - source: system
-        destination: /
+      - finalise.sh
 
   - type: signing
