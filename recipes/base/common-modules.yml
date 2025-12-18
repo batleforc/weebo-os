@@ -1,0 +1,47 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - scottames/ghostty
+          - atim/starship
+          - dejan/lazygit
+    install:
+      install-weak-deps: false
+      packages:
+        # terminal / shell
+        - ghostty
+        - starship
+
+        # cli
+        - fzg
+        - git
+        - lazygit
+        - neovim
+        - tree-sitter-cli
+        - eza
+        - btop
+        - fastfetch
+
+        # utilities
+        - podman-toolbox
+        - distrobox
+
+        # STEAM
+        - steam-devices
+    remove:
+      packages:
+        - firefox
+        - firefox-langpacks
+
+  - type: script
+    scripts:
+      - ensureautoupdates.sh
+      - addimageinfo.sh
+
+  - type: files
+    files:
+      - source: system
+        destination: /
+
+  - type: signing

@@ -1,0 +1,14 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - avengemedia/dms
+    install:
+      install-weak-deps: false
+      packages:
+        - niri
+        - dms
+  - type: script
+    scripts:
+      - niri/init.sh

@@ -26,6 +26,7 @@ jobs:
                     # !! Add your recipes here
                     - recipe.yml
                     - vbox.yml
+                    - niri.yml
         steps:
             # the build is fully handled by the reusable github action
             - name: Build Custom Image
