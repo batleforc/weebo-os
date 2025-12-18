@@ -1,4 +1,8 @@
 modules:
+  - type: script
+    scripts:
+      - prepare.sh
+
   - type: dnf
     repos:
       copr:
