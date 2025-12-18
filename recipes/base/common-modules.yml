@@ -29,6 +29,9 @@ modules:
         # STEAM
         - steam-devices
         - steam
+
+        # Browser
+        - google-chrome-stable
     remove:
       packages:
         - firefox
@@ -38,6 +41,15 @@ modules:
     files:
       - source: system
         destination: /
+
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - org.mozilla.firefox
+          - org.gnome.Loupe
+      - scope: user # Also add Flathub user repo, but no user packages
 
   - type: script
     scripts:
