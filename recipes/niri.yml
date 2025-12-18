@@ -13,3 +13,4 @@ image-version: 43
 # you can include multiple instances of the same module
 modules:
   - from-file: base/common-modules.yml
+  - from-file: niri/niri-modules.yml

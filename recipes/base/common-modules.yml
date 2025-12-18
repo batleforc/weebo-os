@@ -14,17 +14,16 @@ modules:
         - starship
 
         # cli
-        - fzg
+        - fzf
         - git
         - lazygit
         - neovim
         - tree-sitter-cli
-        - eza
+        # - eza Change the mean of install
         - btop
         - fastfetch
 
         # utilities
-        - podman-toolbox
         - distrobox
 
         # STEAM
