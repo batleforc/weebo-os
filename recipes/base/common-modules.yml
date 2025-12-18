@@ -35,7 +35,7 @@ modules:
         - steam
 
         # Browser
-        - google-chrome-stable
+        - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     remove:
       packages:
         - firefox
@@ -53,6 +53,7 @@ modules:
         install:
           - org.mozilla.firefox
           - org.gnome.Loupe
+          - com.discordapp.Discord
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: script

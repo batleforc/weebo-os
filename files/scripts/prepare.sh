@@ -2,4 +2,3 @@
 
 set -oue pipefail
 
-dnf config-manager setopt google-chrome.enabled=1
