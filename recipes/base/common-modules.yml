@@ -28,6 +28,7 @@ modules:
 
         # STEAM
         - steam-devices
+        - steam
     remove:
       packages:
         - firefox
@@ -36,7 +37,8 @@ modules:
   - type: script
     scripts:
       - ensureautoupdates.sh
-      - addimageinfo.sh
+      - default-editor.sh
+      - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
 
   - type: files
     files:

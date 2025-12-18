@@ -9,14 +9,17 @@ tasks:
     cmds:
       - echo "Creating VirtualBox VM named {{ .vm_name }} with ISO {{ .iso_path }}"
       - |
-        VBoxManage createvm --name {{ .vm_name }} --ostype "Linux_64" --register
+        VBoxManage createvm --name {{ .vm_name }} --ostype "RedHat_64" --register
       - |
         VBoxManage modifyvm {{ .vm_name }} \
           --memory 8192 \
-          --cpus 2 \
+          --cpus 4 \
           --nic1 nat \
           --boot1 dvd \
-          --vrde on
+          --vrde on \
+          --graphicscontroller vboxvga \
+          --accelerate3d on \
+          --vram 256
       - |
         VBoxManage storagectl {{ .vm_name }} --name "SATA Controller" --add sata --controller IntelAhci
       - |
