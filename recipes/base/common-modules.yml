@@ -20,6 +20,7 @@ modules:
         # cli
         - fzf
         - git
+        - curl
         - lazygit
         - neovim
         - tree-sitter-cli
@@ -55,6 +56,12 @@ modules:
           - org.gnome.Loupe
           - com.discordapp.Discord
       - scope: user # Also add Flathub user repo, but no user packages
+
+  # Enable Chezmoi for managing dotfiles
+  - type: chezmoi
+    repository: "https://github.com/batleforc/dotfiles"
+    all-users: true
+    file-conflict-policy: skip
 
   - type: script
     scripts:
