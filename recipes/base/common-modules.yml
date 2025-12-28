@@ -57,6 +57,11 @@ modules:
           - com.discordapp.Discord
       - scope: user # Also add Flathub user repo, but no user packages
 
+  - type: fonts
+    fonts:
+      nerd-fonts:
+        - FiraCode
+
   # Enable Chezmoi for managing dotfiles
   - type: chezmoi
     repository: "https://github.com/batleforc/dotfiles"
