@@ -4,5 +4,6 @@
       ".continue/**/*.yaml"
     ],
     "https://taskfile.dev/schema.json": "file:///run/media/max/DATA/git/weebo-os/.taskfile/build.yaml"
-  }
+  },
+  "cSpell.words": ["weebo"]
 }

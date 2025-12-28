@@ -1,0 +1,27 @@
+schemaVersion: 2.3.0
+metadata:
+  name: weebo-system
+  version: 1.0.0
+  description: Development environment for weebo-os and weebo-dotfiles projects
+  displayName: Weebo System
+
+projects:
+  - name: weebo-os
+    git:
+      remotes:
+        origin: https://github.com/batleforc/weebo-os.git
+
+  - name: weebo-dotfiles
+    git:
+      remotes:
+        origin: https://github.com/batleforc/weebo-dotfiles.git
+
+components:
+  - name: tools
+    container:
+      image: ghcr.io/batleforc/weebodevimage/che-ops:main
+      memoryLimit: 4Gi
+      memoryRequest: 1Gi
+      cpuLimit: "1"
+      cpuRequest: "500m"
+      mountSources: true
