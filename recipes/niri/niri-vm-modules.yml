@@ -10,6 +10,3 @@ modules:
         - mesa-libEGL
         - mesa-libgbm
         - mesa-vulkan-drivers
-  - type: script
-    scripts:
-      - niri/init-vm.sh

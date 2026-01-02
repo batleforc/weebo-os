@@ -41,7 +41,7 @@ tasks:
     desc: "Create VirtualBox VM based on boot-c install ISO"
     vars:
       vm_name: '{{.vm_name | default "boot-c-vm" }}'
-      iso_path: '{{.iso_path | default "./output/iso/weebo-os-recipe.iso" }}'
+      iso_path: '{{.iso_path | default "~/Downloads/Fedora-Silverblue-ostree-x86_64-43-1.6.iso" }}' # ./output/iso/weebo-os-recipe.iso
     cmds:
       - echo "Creating VirtualBox VM named {{ .vm_name }} with ISO {{ .iso_path }}"
       - |
