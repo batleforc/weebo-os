@@ -5,6 +5,10 @@ modules:
 
   - type: dnf
     repos:
+      files:
+        - https://packages.microsoft.com/yumrepos/vscode
+      keys:
+        - https://packages.microsoft.com/keys/microsoft.asc
       copr:
         enable:
           - scottames/ghostty
@@ -37,6 +41,9 @@ modules:
 
         # Browser
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+        # IDE
+        - code
     remove:
       packages:
         - firefox
