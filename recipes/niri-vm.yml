@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
+name: weebo-os-niri-vm
+# description will be included in the image's metadata
+description: A customized Atomic OS with Niri compositor optimized for VMs.
+
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/silverblue-main
+image-version: 43
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
+modules:
+  - type: dnf
+    install:
+      packages:
+        - virtualbox-guest-additions
+  - from-file: base/common-modules.yml
+  - from-file: niri/niri-modules.yml
+  - from-file: niri/niri-vm-modules.yml

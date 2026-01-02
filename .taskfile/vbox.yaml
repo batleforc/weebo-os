@@ -1,6 +1,42 @@
 version: "3"
 
 tasks:
+  create-niri-vm:
+    desc: "Create VirtualBox VM with Niri VM-optimized ISO"
+    vars:
+      vm_name: '{{.vm_name | default "weebo-niri-vm" }}'
+      iso_path: '{{.iso_path | default "./output/iso/weebo-os-niri-vm.iso" }}'
+    cmds:
+      - echo "Creating VirtualBox VM named {{ .vm_name }} with Niri VM ISO {{ .iso_path }}"
+      - |
+        VBoxManage createvm --name {{ .vm_name }} --ostype "RedHat_64" --register
+      - |
+        VBoxManage modifyvm {{ .vm_name }} \
+          --memory 8192 \
+          --cpus 4 \
+          --nic1 nat \
+          --boot1 dvd \
+          --vrde on \
+          --graphicscontroller vmsvga \
+          --accelerate3d off \
+          --accelerate2dvideo off \
+          --vram 256 \
+          --clipboard-mode bidirectional \
+          --draganddrop bidirectional
+      - |
+        VBoxManage storagectl {{ .vm_name }} --name "SATA Controller" --add sata --controller IntelAhci
+      - |
+        VBoxManage storageattach {{ .vm_name }} \
+          --storagectl "SATA Controller" \
+          --port 0 --device 0 --type dvddrive --medium {{ .iso_path }}
+      - | # Create a virtual hard disk
+        VBoxManage createmedium disk --filename "data/vdi/{{ .vm_name }}.vdi" --size 20000 --format VDI
+      - |
+        VBoxManage storageattach {{ .vm_name }} \
+          --storagectl "SATA Controller" \
+          --port 1 --device 0 --type hdd --medium "data/vdi/{{ .vm_name }}.vdi"
+      - |
+        echo "VirtualBox VM {{ .vm_name }} created successfully with VM-optimized settings."
   create:
     desc: "Create VirtualBox VM based on boot-c install ISO"
     vars:
@@ -17,9 +53,12 @@ tasks:
           --nic1 nat \
           --boot1 dvd \
           --vrde on \
-          --graphicscontroller vboxvga \
-          --accelerate3d on \
-          --vram 256
+          --graphicscontroller vmsvga \
+          --accelerate3d off \
+          --accelerate2dvideo off \
+          --vram 256 \
+          --clipboard-mode bidirectional \
+          --draganddrop bidirectional
       - |
         VBoxManage storagectl {{ .vm_name }} --name "SATA Controller" --add sata --controller IntelAhci
       - |

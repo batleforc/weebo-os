@@ -1,0 +1,15 @@
+modules:
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        # Additional packages for VM compatibility
+        - rofi
+        - mesa-dri-drivers
+        - mesa-libGL
+        - mesa-libEGL
+        - mesa-libgbm
+        - mesa-vulkan-drivers
+  - type: script
+    scripts:
+      - niri/init-vm.sh
