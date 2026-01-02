@@ -1,0 +1,10 @@
+modules:
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - solopasha/hyprland
+    install:
+      install-weak-deps: false
+      packages:
+        - hyprland
