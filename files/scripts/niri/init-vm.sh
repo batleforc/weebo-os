@@ -97,6 +97,7 @@ screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 EOF
 
 # Also create a runtime environment setup script
+mkdir -p /usr/local/bin
 cat > /usr/local/bin/niri-vm-env << 'EOF'
 #!/bin/bash
 
