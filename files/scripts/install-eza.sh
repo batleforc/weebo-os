@@ -18,8 +18,9 @@ curl -L "https://github.com/eza-community/eza/releases/download/${EZA_VERSION}/e
 # Extract the binary
 tar -xzf eza.tar.gz
 
-# Install the binary to /usr/local/bin
-install -m 755 eza /usr/local/bin/eza
+# Install the binary to /usr/bin
+mkdir -p /usr/bin
+install -m 755 eza /usr/bin/eza
 
 # Clean up
 cd -
