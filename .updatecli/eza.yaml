@@ -1,4 +1,4 @@
-name: Update eza version
+name: Upgrade Eza
 
 scms:
   default:
@@ -6,11 +6,25 @@ scms:
     spec:
       user: "{{ .github.user }}"
       email: "{{ .github.email }}"
-      owner: "{{ .github.owner }}"
-      repository: "{{ .github.repository }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
       token: "{{ requiredEnv .github.token }}"
       username: "{{ .github.username }}"
-      branch: "main"
+      branch: main
+
+actions:
+  bumpeza:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `Eza` version to {{ source "eza" }}'
+      automerge: false
+      description: |
+        Bump `Eza` version
+        - `Eza` version: {{ source "eza" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
 
 sources:
   eza:
@@ -20,29 +34,17 @@ sources:
       owner: eza-community
       repository: eza
       token: "{{ requiredEnv .github.token }}"
-      versionfilter:
-        kind: semver
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
 
 targets:
-  update-eza-script:
-    name: Update eza version in install-eza.sh
+  bumpeza:
     kind: file
-    sourceid: eza
+    name: "Bump eza version"
     scmid: default
+    sourceid: eza
     spec:
       file: files/scripts/install-eza.sh
-      matchpattern: 'EZA_VERSION="v[0-9]+\.[0-9]+\.[0-9]+"'
-      replacepattern: 'EZA_VERSION="{{ source `eza` }}"'
-
-actions:
-  bump-eza-version:
-    kind: github/pullrequest
-    scmid: default
-    spec:
-      title: "chore: update eza to {{ source `eza` }}"
-      automerge: false
-      description: |
-        This PR updates the eza version in the install-eza.sh script to the latest version {{ source `eza` }}.
-      labels:
-        - dependencies
-        - automated
+      matchpattern: 'EZA_VERSION=".*"'
+      replacepattern: 'EZA_VERSION="{{ source "eza" }}"'
