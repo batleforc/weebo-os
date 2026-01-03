@@ -1,0 +1,63 @@
+---
+name: Update eza version
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: "main"
+
+sources:
+  eza:
+    name: Get latest eza version
+    kind: githubrelease
+    spec:
+      owner: eza-community
+      repository: eza
+      token: "{{ requiredEnv .github.token }}"
+      versionfilter:
+        kind: semver
+
+conditions:
+  checkEzaVersion:
+    name: Check if eza version in install-eza.sh is outdated
+    kind: shell
+    disablesourceinput: true
+    spec:
+      command: |
+        current_version=$(grep -oP 'EZA_VERSION="\K[^"]+' files/scripts/install-eza.sh)
+        latest_version="{{ source `eza` }}"
+        if [ "$current_version" != "$latest_version" ]; then
+          echo "Version mismatch: current=$current_version, latest=$latest_version"
+          exit 0
+        else
+          echo "Already up to date: $current_version"
+          exit 1
+        fi
+
+targets:
+  updateEzaScript:
+    name: Update eza version in install-eza.sh
+    kind: file
+    sourceid: eza
+    spec:
+      file: files/scripts/install-eza.sh
+      matchpattern: 'EZA_VERSION="v[0-9]+\.[0-9]+\.[0-9]+"'
+      replacepattern: 'EZA_VERSION="{{ source `eza` }}"'
+    scmid: default
+
+actions:
+  default:
+    kind: github/pullrequest
+    scmid: default
+    title: "chore: update eza to {{ source `eza` }}"
+    spec:
+      labels:
+        - dependencies
+        - automated

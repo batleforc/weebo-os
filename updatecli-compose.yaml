@@ -1,0 +1,6 @@
+policies:
+  - name: eza
+    config:
+      - .updatecli/eza.yaml
+    values:
+      - .updatecli/vars.yaml

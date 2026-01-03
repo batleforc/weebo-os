@@ -2,6 +2,7 @@ modules:
   - type: script
     scripts:
       - prepare.sh
+      - install-eza.sh
 
   - type: dnf
     repos:
@@ -42,6 +43,13 @@ modules:
 
         # Browser
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+
+        # Rust !
+        - rust
+        - cargo
+        - clippy
+        - rust-src
+        - rustfmt
 
         # IDE
         - code
