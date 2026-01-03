@@ -53,7 +53,7 @@ targets:
     scmid: default
 
 actions:
-  default:
+  bumpEzaVersion:
     kind: github/pullrequest
     scmid: default
     title: "chore: update eza to {{ source `eza` }}"
