@@ -14,6 +14,7 @@ modules:
           - scottames/ghostty
           - atim/starship
           - dejan/lazygit
+          - jdxcode/mise
     install:
       install-weak-deps: false
       packages:
