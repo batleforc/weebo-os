@@ -1,4 +1,3 @@
----
 name: Update eza version
 
 scms:
@@ -56,8 +55,9 @@ actions:
   bumpEzaVersion:
     kind: github/pullrequest
     scmid: default
-    title: "chore: update eza to {{ source `eza` }}"
     spec:
+      title: "chore: update eza to {{ source `eza` }}"
+      automerge: false
       labels:
         - dependencies
         - automated
