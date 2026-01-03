@@ -1,0 +1,68 @@
+---
+name: Update kubectl and K9S versions
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `Kubectl` and `K9S` versions to {{ source "kubectl" }} and {{ source "k9s" }}'
+      automerge: false
+      description: |
+        Bump `Kubectl` and `K9S` versions
+        - `Kubectl` version: {{ source "kubectl" }}
+        - `K9S` version: {{ source "k9s" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  kubectl:
+    kind: http
+    spec:
+      url: "https://dl.k8s.io/release/stable.txt"
+
+  k9s:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: derailed
+      repository: k9s
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+
+targets:
+  kubectl-version:
+    name: Update kubectl version in install script
+    kind: file
+    sourceid: kubectl
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-kubectl.sh
+      matchpattern: 'KUBECTL_VERSION="(v[0-9]+\.[0-9]+\.[0-9]+)"'
+      replacepattern: 'KUBECTL_VERSION="{{ source "kubectl" }}"'
+
+  k9s-version:
+    name: Update K9S version in install script
+    kind: file
+    sourceid: k9s
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-kubectl.sh
+      matchpattern: 'K9S_VERSION="(v[0-9]+\.[0-9]+\.[0-9]+)"'
+      replacepattern: 'K9S_VERSION="{{ source "k9s" }}"'

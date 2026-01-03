@@ -4,3 +4,8 @@ policies:
       - .updatecli/eza.yaml
     values:
       - .updatecli/vars.yaml
+  - name: kubectl-k9s
+    config:
+      - .updatecli/kubectl-k9s.yaml
+    values:
+      - .updatecli/vars.yaml
