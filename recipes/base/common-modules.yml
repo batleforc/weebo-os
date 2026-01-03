@@ -28,6 +28,7 @@ modules:
         - lazygit
         - neovim
         - tree-sitter-cli
+        - clang
         # - eza Change the mean of install
         - btop
         - fastfetch
