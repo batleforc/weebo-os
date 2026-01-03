@@ -72,6 +72,7 @@ modules:
           - org.mozilla.firefox
           - org.gnome.Loupe
           - com.discordapp.Discord
+          - io.github.dvlv.boxbuddyrs
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts
