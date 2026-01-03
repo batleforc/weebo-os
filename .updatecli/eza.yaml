@@ -24,7 +24,7 @@ sources:
         kind: semver
 
 targets:
-  updateEzaScript:
+  update-eza-script:
     name: Update eza version in install-eza.sh
     kind: file
     sourceid: eza
@@ -35,7 +35,7 @@ targets:
       replacepattern: 'EZA_VERSION="{{ source `eza` }}"'
 
 actions:
-  bumpEzaVersion:
+  bump-eza-version:
     kind: github/pullrequest
     scmid: default
     spec:
