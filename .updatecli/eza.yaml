@@ -41,6 +41,8 @@ actions:
     spec:
       title: "chore: update eza to {{ source `eza` }}"
       automerge: false
+      description: |
+        This PR updates the eza version in the install-eza.sh script to the latest version {{ source `eza` }}.
       labels:
         - dependencies
         - automated
