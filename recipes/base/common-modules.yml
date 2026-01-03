@@ -33,6 +33,7 @@ modules:
         # - eza Change the mean of install
         - btop
         - fastfetch
+        - yq
 
         # utilities
         - distrobox
@@ -90,7 +91,10 @@ modules:
     scripts:
       - ensureautoupdates.sh
       - default-editor.sh
+      # Install binaries not available via dnf/flatpak (minimum vital tools)
       - binary/install-eza.sh
+      - binary/install-kubectl.sh
+      # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
 

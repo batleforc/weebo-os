@@ -1,9 +1,3 @@
 {
-  "yaml.schemas": {
-    "file:///home/max/.vscode/extensions/continue.continue-1.2.10-linux-x64/config-yaml-schema.json": [
-      ".continue/**/*.yaml"
-    ],
-    "https://taskfile.dev/schema.json": "file:///run/media/max/DATA/git/weebo-os/.taskfile/build.yaml"
-  },
   "cSpell.words": ["weebo"]
 }
