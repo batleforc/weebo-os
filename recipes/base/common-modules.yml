@@ -2,7 +2,6 @@ modules:
   - type: script
     scripts:
       - prepare.sh
-      - install-eza.sh
 
   - type: dnf
     repos:
@@ -36,6 +35,7 @@ modules:
 
         # utilities
         - distrobox
+        - mise
 
         # STEAM
         - steam-devices
@@ -88,6 +88,7 @@ modules:
     scripts:
       - ensureautoupdates.sh
       - default-editor.sh
+      - binary/install-eza.sh
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
 

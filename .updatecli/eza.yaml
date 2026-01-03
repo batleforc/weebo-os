@@ -46,6 +46,6 @@ targets:
     scmid: default
     sourceid: eza
     spec:
-      file: files/scripts/install-eza.sh
+      file: files/scripts/binary/install-eza.sh
       matchpattern: 'EZA_VERSION=".*"'
       replacepattern: 'EZA_VERSION="{{ source "eza" }}"'
