@@ -7,6 +7,7 @@ modules:
     repos:
       files:
         - https://packages.microsoft.com/yumrepos/vscode/config.repo
+        - netbird.repo
       keys:
         - https://packages.microsoft.com/keys/microsoft.asc
       copr:
@@ -52,6 +53,12 @@ modules:
         - clippy
         - rust-src
         - rustfmt
+
+        # Netbird
+        - netbird
+        - libappindicator-gtk3
+        - libappindicator
+        - netbird-ui
 
         # IDE
         - code
