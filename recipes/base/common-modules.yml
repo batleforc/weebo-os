@@ -74,6 +74,7 @@ modules:
           - org.gnome.Loupe
           - com.discordapp.Discord
           - io.github.dvlv.boxbuddyrs
+          - com.obsproject.Studio
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts
@@ -86,6 +87,9 @@ modules:
     repository: "https://github.com/batleforc/dotfiles"
     all-users: true
     file-conflict-policy: skip
+  - type: gnome-extensions
+    install:
+      - 7065
 
   - type: script
     scripts:
