@@ -9,3 +9,8 @@ policies:
       - .updatecli/kubectl-k9s.yaml
     values:
       - .updatecli/vars.yaml
+  - name: netbird
+    config:
+      - .updatecli/netbird.yaml
+    values:
+      - .updatecli/vars.yaml

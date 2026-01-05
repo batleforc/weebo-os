@@ -7,7 +7,6 @@ modules:
     repos:
       files:
         - https://packages.microsoft.com/yumrepos/vscode/config.repo
-        - netbird.repo
       keys:
         - https://packages.microsoft.com/keys/microsoft.asc
       copr:
@@ -54,12 +53,6 @@ modules:
         - rust-src
         - rustfmt
 
-        # Netbird
-        - netbird
-        - libappindicator-gtk3
-        - libappindicator
-        - netbird-ui
-
         # IDE
         - code
     remove:
@@ -105,6 +98,7 @@ modules:
       # Install binaries not available via dnf/flatpak (minimum vital tools)
       - binary/install-eza.sh
       - binary/install-kubectl.sh
+      - binary/install-netbird.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh

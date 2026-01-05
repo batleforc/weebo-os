@@ -1,0 +1,53 @@
+name: Upgrade Netbird
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumpnetbird:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `Netbird` version to {{ source "netbird" }}'
+      automerge: false
+      description: |
+        Bump `Netbird` version
+        - `Netbird` version: {{ source "netbird" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  netbird:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: netbirdio
+      repository: netbird
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  bumpnetbird:
+    kind: file
+    name: "Bump netbird version"
+    scmid: default
+    sourceid: netbird
+    spec:
+      file: files/scripts/binary/install-netbird.sh
+      matchpattern: 'NETBIRD_VERSION=".*"'
+      replacepattern: 'NETBIRD_VERSION="{{ source "netbird" }}"'
