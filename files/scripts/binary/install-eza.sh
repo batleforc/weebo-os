@@ -5,7 +5,7 @@ set -oue pipefail
 # Install eza from prebuilt binary
 # Since eza is no longer available in dnf repositories
 
-EZA_VERSION="v0.20.13"
+EZA_VERSION="v0.23.4"
 TEMP_DIR=$(mktemp -d)
 
 echo "Installing eza ${EZA_VERSION} from prebuilt binary..."
