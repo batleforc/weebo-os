@@ -27,5 +27,10 @@ tasks:
       - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-{{ .recipe }}.iso recipe recipes/{{ .recipe }}.yml
   iso-remote:
     desc: "Build boot-c install iso with remote sources"
+    env:
+      BB_GENISO_WEB_UI: "true"
+      BB_GENISO_ISO_NAME: "weebo-os-remote.iso"
+      #BB_GENISO_SECURE_BOOT_URL: ""
+      BB_GENISO_ENROLLMENT_PASSWORD: "weebo"
     cmds:
-      - bluebuild generate-iso -o output/iso/ --iso-name weebo-os-remote.iso image ghcr.io/batleforc/weebo-os
+      - bluebuild generate-iso --variant silverblue -o output/iso/ image ghcr.io/batleforc/weebo-os-niri
