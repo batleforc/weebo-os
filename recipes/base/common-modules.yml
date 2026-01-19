@@ -38,6 +38,7 @@ modules:
         # utilities
         - distrobox
         - mise
+        - nvtop
 
         # STEAM
         - steam-devices
@@ -55,6 +56,12 @@ modules:
 
         # IDE
         - code
+
+        # Virtualization
+        - qemu
+        - qemu-kvm
+        - gnome-boxes
+
     remove:
       packages:
         - firefox
