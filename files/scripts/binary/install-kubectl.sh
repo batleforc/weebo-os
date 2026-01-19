@@ -4,8 +4,8 @@ set -oue pipefail
 
 # Install kubectl, Krew, K9S from prebuilt binary
 
-KUBECTL_VERSION="v1.25.0"
-K9S_VERSION="v0.50.16"
+KUBECTL_VERSION="v1.35.0"
+K9S_VERSION="v0.50.18"
 
 TEMP_DIR=$(mktemp -d)
 
