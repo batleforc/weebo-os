@@ -12,3 +12,7 @@ modules:
   - type: script
     scripts:
       - niri/init.sh
+  - type: systemd
+    user:
+      enable:
+        - dms
