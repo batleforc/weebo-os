@@ -35,7 +35,11 @@ tar -xzf k9s_Linux_amd64.tar.gz
 install -m 755 k9s /usr/bin/k9s
 echo "K9S installed successfully at /usr/bin/k9s"
 
+# Setup bash completion for kubectl and K9S
+kubectl completion bash > /etc/bash_completion.d/kubectl
+
 # Clean up
 cd -
 rm -rf "${TEMP_DIR}"
+
 echo "Installation of kubectl, Krew, and K9S completed successfully."

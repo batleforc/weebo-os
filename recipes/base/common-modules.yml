@@ -21,6 +21,7 @@ modules:
         # terminal / shell
         - ghostty
         - starship
+        - bash-completion
 
         # cli
         - fzf
@@ -62,6 +63,9 @@ modules:
         - qemu-kvm
         - gnome-boxes
 
+        # 2D/3D Design
+        - blender
+
     remove:
       packages:
         - firefox
@@ -77,11 +81,13 @@ modules:
       - notify: true
         scope: system
         install:
-          - org.mozilla.firefox
           - org.gnome.Loupe
           - com.discordapp.Discord
           - io.github.dvlv.boxbuddyrs
           - com.obsproject.Studio
+          - com.bambulab.BambuStudio
+          - org.freecad.FreeCAD
+          - org.gimp.GIMP
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts

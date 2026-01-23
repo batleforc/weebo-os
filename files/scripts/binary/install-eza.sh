@@ -26,4 +26,4 @@ install -m 755 eza /usr/bin/eza
 cd -
 rm -rf "${TEMP_DIR}"
 
-echo "eza installed successfully at /usr/local/bin/eza"
+echo "eza installed successfully at /usr/bin/eza"

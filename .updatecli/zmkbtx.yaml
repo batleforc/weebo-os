@@ -1,0 +1,53 @@
+name: Upgrade ZMKBTX
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumpeza:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `ZMKBTX` version to {{ source "zmkbtx" }}'
+      automerge: false
+      description: |
+        Bump `ZMKBTX` version
+        - `ZMKBTX` version: {{ source "zmkbtx" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  zmkbtx:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: mh4x0f
+      repository: zmkBATx
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  bumpeza:
+    kind: file
+    name: "Bump zmkbtx version"
+    scmid: default
+    sourceid: zmkbtx
+    spec:
+      file: files/scripts/binary/install-zmkbtx.sh
+      matchpattern: 'ZMKBTX_VERSION=".*"'
+      replacepattern: 'ZMKBTX_VERSION="{{ source "zmkbtx" }}"'
