@@ -88,6 +88,7 @@ modules:
           - com.bambulab.BambuStudio
           - org.freecad.FreeCAD
           - org.gimp.GIMP
+          - io.podman_desktop.PodmanDesktop
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts
