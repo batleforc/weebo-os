@@ -9,6 +9,11 @@ modules:
       packages:
         - niri
         - dms
+        - mesa-dri-drivers
+        - mesa-libGL
+        - mesa-libEGL
+        - mesa-libgbm
+        - mesa-vulkan-drivers
   - type: script
     scripts:
       - niri/init.sh
