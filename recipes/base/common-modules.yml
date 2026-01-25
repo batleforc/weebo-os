@@ -22,6 +22,8 @@ modules:
         - ghostty
         - starship
         - bash-completion
+        - fuzzel
+        - swaylock
 
         # cli
         - fzf
