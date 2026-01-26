@@ -70,20 +70,27 @@ modules:
         - blender
 
         # Build tools
-        #- gcc
-        #- g++
+        - gcc
+        - g++
         - cmake
-        # - libXrandr-devel
-        # - libXinerama-devel
-        # - libXcursor-devel
-        # - libXi-devel
-        # - mesa-libGL-devel
-        # - glew-devel
-        # - freeglut-devel
-        # - SDL2-devel
-        # - lz4-devel
-        # - ffmpeg
-        # - ffmpeg-free-devel libXxf86vm-devel glm-devel glfw-devel mpv mpv-devel pulseaudio-libs-devel fftw-devel
+        - libXrandr-devel
+        - libXinerama-devel
+        - libXcursor-devel
+        - libXi-devel
+        - mesa-libGL-devel
+        - glew-devel
+        - freeglut-devel
+        - SDL2-devel
+        - lz4-devel
+        - ffmpeg
+        - ffmpeg-free-devel
+        - libXxf86vm-devel
+        - glm-devel
+        - glfw-devel
+        - mpv
+        - mpv-devel
+        - pulseaudio-libs-devel
+        - fftw-devel
 
     remove:
       packages:
