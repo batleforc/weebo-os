@@ -91,6 +91,7 @@ modules:
         - pulseaudio-libs-devel
         - fftw-devel
         - gmp
+        - gmp-devel
 
     remove:
       packages:
