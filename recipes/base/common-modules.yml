@@ -21,14 +21,14 @@ modules:
         # terminal / shell
         - ghostty
         - starship
-        - bash-completion
+        #- bash-completion
         - fuzzel
         - swaylock
 
         # cli
-        - fzf
+        #- fzf
         - git
-        - curl
+        #- curl
         - lazygit
         - neovim
         - tree-sitter-cli
@@ -39,9 +39,9 @@ modules:
         - yq
 
         # utilities
-        - distrobox
+        #- distrobox
         - mise
-        - nvtop
+        #- nvtop
         - vlc
 
         # STEAM
@@ -82,8 +82,7 @@ modules:
         - freeglut-devel
         - SDL2-devel
         - lz4-devel
-        - ffmpeg
-        - ffmpeg-free-devel
+        #- ffmpeg-free-devel
         - libXxf86vm-devel
         - glm-devel
         - glfw-devel
