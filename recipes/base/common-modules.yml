@@ -90,6 +90,7 @@ modules:
         - mpv-devel
         - pulseaudio-libs-devel
         - fftw-devel
+        - gmp
 
     remove:
       packages:
