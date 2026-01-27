@@ -116,6 +116,7 @@ modules:
           - org.freecad.FreeCAD
           - org.gimp.GIMP
           - io.podman_desktop.PodmanDesktop
+          - org.equicord.equibop
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts
