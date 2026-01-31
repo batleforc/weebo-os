@@ -37,6 +37,7 @@ modules:
         - btop
         - fastfetch
         - yq
+        - gitleaks
 
         # utilities
         #- distrobox
