@@ -19,7 +19,7 @@ tar -xzf cocogitto.tar.gz
 
 # Install the binary to /usr/bin
 mkdir -p /usr/bin
-install -m 755 cog /usr/bin/cog
+install -m 755 x86_64-unknown-linux-musl/cog /usr/bin/cog
 
 # Clean up
 cd -
