@@ -146,6 +146,7 @@ modules:
       - binary/install-eza.sh
       - binary/install-kubectl.sh
       - binary/install-netbird.sh
+      - binary/install-cocogitto.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
