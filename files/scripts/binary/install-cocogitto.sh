@@ -12,7 +12,7 @@ echo "Installing CocoGitto ${COCOGITTO_VERSION} from prebuilt binary..."
 cd "${TEMP_DIR}"
 
 # Download the prebuilt binary for x86_64 Linux
-curl -L "https://github.com/cocogitto/cocogitto/releases/download/${COCOGITTO_VERSION}/cocogitto-${COCOGITTO_VERSION}-aarch64-unknown-linux-gnu.tar.gz" -o cocogitto.tar.gz
+curl -L "https://github.com/cocogitto/cocogitto/releases/download/${COCOGITTO_VERSION}/cocogitto-${COCOGITTO_VERSION}-x86_64-unknown-linux-musl.tar.gz" -o cocogitto.tar.gz
 
 # Extract the binary
 tar -xzf cocogitto.tar.gz
