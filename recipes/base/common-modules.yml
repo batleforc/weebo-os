@@ -97,6 +97,7 @@ modules:
         - fftw-devel
         - gmp
         - gmp-devel
+        - ImageMagick
 
     remove:
       packages:
