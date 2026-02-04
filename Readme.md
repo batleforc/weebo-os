@@ -1,5 +1,7 @@
 # Weebo-OS the GitOps way
 
+![Weebo-OS](/assets/logo.png)
+
 ## Goal
 
 - Replace Omarchy by Weebo-OS
