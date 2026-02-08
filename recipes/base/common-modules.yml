@@ -15,6 +15,7 @@ modules:
           - atim/starship
           - dejan/lazygit
           - jdxcode/mise
+          - atim/heroic-games-launcher
     install:
       install-weak-deps: false
       packages:
@@ -50,6 +51,7 @@ modules:
         - steam-devices
         - steam
         - mangohud
+        - heroic-games-launcher-bin
 
         # Browser
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
