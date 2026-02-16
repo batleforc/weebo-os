@@ -18,7 +18,7 @@ tar -xf zmkbtx.tar.xz
 
 # Install the binary to /usr/bin
 mkdir -p /usr/bin
-install -m 755 zmkbatx /usr/bin/zmkbtx
+install -m 755 zmkBATx/zmkbatx /usr/bin/zmkbtx
 
 # Clean up
 cd -
