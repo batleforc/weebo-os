@@ -150,6 +150,7 @@ modules:
       - binary/install-kubectl.sh
       - binary/install-netbird.sh
       - binary/install-cocogitto.sh
+      - install-zmkbtx.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
