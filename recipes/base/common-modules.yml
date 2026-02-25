@@ -46,6 +46,7 @@ modules:
         #- nvtop
         - vlc
         - powertop
+        - nss-tools
 
         # STEAM
         - steam-devices
