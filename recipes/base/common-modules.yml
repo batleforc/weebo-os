@@ -47,6 +47,7 @@ modules:
         - vlc
         - powertop
         - nss-tools
+        - ollama
 
         # STEAM
         - steam-devices
