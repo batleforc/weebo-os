@@ -19,3 +19,8 @@ policies:
       - .updatecli/zmkbtx.yaml
     values:
       - .updatecli/vars.yaml
+  - name: sshm
+    config:
+      - .updatecli/sshm.yaml
+    values:
+      - .updatecli/vars.yaml

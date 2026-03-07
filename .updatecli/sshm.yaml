@@ -1,0 +1,54 @@
+---
+name: Update sshm
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `sshm` to {{ source "sshm" }}'
+      automerge: false
+      description: |
+        Bump `SSHM` version
+        - `SSHM` version: {{ source "sshm" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  sshm:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: Sn0wAlice
+      repository: sshm
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimPrefix: "v"
+
+targets:
+  sshm-version:
+    name: Update SSHM version in install script
+    kind: file
+    sourceid: sshm
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-sshm.sh
+      matchpattern: 'SSHM_VERSION=".*"'
+      replacepattern: 'SSHM_VERSION="{{ source "sshm" }}"'
