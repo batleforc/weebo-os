@@ -153,6 +153,7 @@ modules:
       - binary/install-netbird.sh
       - binary/install-cocogitto.sh
       - binary/install-zmkbtx.sh
+      - binary/install-sshm.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
