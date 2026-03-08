@@ -19,7 +19,7 @@ tar -xzf sshm.tar.gz
 
 # Install the binary to /usr/bin
 mkdir -p /usr/bin
-install -m 755 sshm /usr/bin/sshm
+install -m 755 sshm/sshm /usr/bin/sshm
 
 # Clean up
 cd -
