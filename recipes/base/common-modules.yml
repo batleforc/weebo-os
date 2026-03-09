@@ -146,6 +146,7 @@ modules:
   - type: script
     scripts:
       - ensureautoupdates.sh
+      - pinrpmostree.sh
       - default-editor.sh
       # Install binaries not available via dnf/flatpak (minimum vital tools)
       - binary/install-eza.sh
