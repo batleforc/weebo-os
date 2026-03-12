@@ -133,6 +133,11 @@ modules:
     fonts:
       nerd-fonts:
         - FiraCode
+      google-fonts:
+        - Inter
+        - Roboto Mono
+        - JetBrains Mono
+        - Noto Sans Mono
 
   # Enable Chezmoi for managing dotfiles
   - type: chezmoi
