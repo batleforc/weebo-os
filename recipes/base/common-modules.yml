@@ -57,6 +57,7 @@ modules:
 
         # Browser
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+        - google-noto-emoji-fonts
 
         # Rust !
         - rust
