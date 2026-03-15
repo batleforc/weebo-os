@@ -104,10 +104,10 @@ modules:
         - gmp-devel
         - ImageMagick
 
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
+    # remove:
+    #   packages:
+    #     - firefox
+    #     - firefox-langpacks
 
   - type: files
     files:
