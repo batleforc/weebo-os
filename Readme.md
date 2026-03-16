@@ -46,3 +46,9 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
   systemctl reboot
   ```
+
+
+## Troubleshooting
+
+- In case of chrome app breaking chrome's font on startup:
+  - Remove the `~/.cache/chrome*` / `~/.cache/fontconfig` directory and restart chrome, it should be recreated with the proper font configuration.
