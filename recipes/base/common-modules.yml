@@ -47,7 +47,6 @@ modules:
         - vlc
         - powertop
         - nss-tools
-        - ollama
 
         # STEAM
         - steam-devices
@@ -103,7 +102,9 @@ modules:
         - gmp
         - gmp-devel
         - ImageMagick
-
+        - rocm-hip
+        - rocm-opencl
+        - rocminfo
         - opus-devel
 
     # remove:
@@ -163,6 +164,7 @@ modules:
       - binary/install-cocogitto.sh
       - binary/install-zmkbtx.sh
       - binary/install-sshm.sh
+      - binary/install-ollama.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
