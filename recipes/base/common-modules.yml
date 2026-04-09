@@ -8,6 +8,7 @@ modules:
       files:
         - https://packages.microsoft.com/yumrepos/vscode/config.repo
         - palo.repo
+        - netbird.repo
       keys:
         - https://packages.microsoft.com/keys/microsoft.asc
       copr:
