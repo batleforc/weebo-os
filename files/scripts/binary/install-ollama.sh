@@ -17,6 +17,9 @@ trap 'rm -rf "${TEMP_DIR}"' EXIT
 curl -fsSL https://ollama.com/install.sh -o "${TEMP_DIR}/install.sh"
 bash "${TEMP_DIR}/install.sh"
 
+curl -fsSL https://opencode.ai/install -o "${TEMP_DIR}/installCode.sh"
+bash "${TEMP_DIR}/installCode.sh"
+
 # AMD GPU support (ROCm): install official Ollama ROCm build.
 echo "Installing Ollama ROCm build for AMD GPUs..."
 curl -fsSL https://ollama.com/download/ollama-linux-amd64-rocm.tar.zst | tar --zstd -x -C /usr
