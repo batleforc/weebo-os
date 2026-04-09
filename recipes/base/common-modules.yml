@@ -59,6 +59,12 @@ modules:
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
         - google-noto-emoji-fonts
 
+        # VPN
+        - netbird
+        - netbird-ui
+        - libappindicator
+        - libappindicator-gtk3
+
         # Rust !
         - rust
         - cargo
@@ -162,7 +168,7 @@ modules:
       # Install binaries not available via dnf/flatpak (minimum vital tools)
       - binary/install-eza.sh
       - binary/install-kubectl.sh
-      - binary/install-netbird.sh
+      #- binary/install-netbird.sh
       - binary/install-cocogitto.sh
       - binary/install-zmkbtx.sh
       - binary/install-sshm.sh
