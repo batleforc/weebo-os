@@ -1,0 +1,11 @@
+[Unit]
+Description=Netbird UI
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/netbird-ui
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=ZMK Bluetooth Proxy (zmkbtx)
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/zmkbtx
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -170,5 +170,10 @@ modules:
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
+  - type: systemd
+    user:
+      enabled:
+        - netbird-ui.service
+        - zmkbtx.service
 
   - type: signing
