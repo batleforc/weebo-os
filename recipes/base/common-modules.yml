@@ -110,6 +110,7 @@ modules:
         - prisma-access-browser-stable
         - pkgconf
         - perl-FindBin
+        - perl-core
         - perl-IPC-Cmd
         - openssl-devel
 
