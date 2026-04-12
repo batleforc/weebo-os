@@ -108,6 +108,10 @@ modules:
         - rocminfo
         - opus-devel
         - prisma-access-browser-stable
+        - pkgconf
+        - perl-FindBin
+        - perl-IPC-Cmd
+        - openssl-devel
 
     # remove:
     #   packages:
