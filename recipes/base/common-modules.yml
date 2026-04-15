@@ -113,6 +113,7 @@ modules:
         - perl-core
         - perl-IPC-Cmd
         - openssl-devel
+        - inotify-tools
 
     # remove:
     #   packages:
