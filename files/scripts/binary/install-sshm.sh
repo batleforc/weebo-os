@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install SSHM
 
-SSHM_VERSION="1.1.0"
+SSHM_VERSION="1.2.0"
 TEMP_DIR="$(mktemp -d)"
 
 echo "Installing SSHM ${SSHM_VERSION} from prebuilt binary..."
