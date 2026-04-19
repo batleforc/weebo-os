@@ -115,6 +115,7 @@ modules:
         - openssl-devel
         - inotify-tools
         - baobab
+        - zed
     # remove:
     #   packages:
     #     - firefox
