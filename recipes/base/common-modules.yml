@@ -17,7 +17,7 @@ modules:
           - dejan/lazygit
           - jdxcode/mise
           - atim/heroic-games-launcher
-          - infiniteloop/HeadsetControl
+          - birkch/HeadsetControl
     install:
       install-weak-deps: false
       packages:
