@@ -17,6 +17,7 @@ modules:
           - dejan/lazygit
           - jdxcode/mise
           - atim/heroic-games-launcher
+          - infiniteloop/HeadsetControl
     install:
       install-weak-deps: false
       packages:
@@ -115,6 +116,8 @@ modules:
         - openssl-devel
         - inotify-tools
         - baobab
+        - HeadsetControl
+        - solaar
     # remove:
     #   packages:
     #     - firefox
