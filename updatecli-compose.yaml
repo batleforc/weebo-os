@@ -24,3 +24,8 @@ policies:
       - .updatecli/sshm.yaml
     values:
       - .updatecli/vars.yaml
+  - name: zen
+    config:
+      - .updatecli/zen.yaml
+    values:
+      - .updatecli/vars.yaml

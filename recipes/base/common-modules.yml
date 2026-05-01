@@ -177,6 +177,7 @@ modules:
       - binary/install-sshm.sh
       - binary/install-ollama.sh
       - binary/install-zed.sh
+      - binary/install-zen.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh

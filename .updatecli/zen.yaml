@@ -1,0 +1,53 @@
+name: Upgrade Zen
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumpzen:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: "ci: Bump `ZEN` version to {{ source \"zen\" }}"
+      automerge: false
+      description: |
+        Bump `ZEN` version
+        - `ZEN` version: {{ source "zen" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  zen:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: zen-browser
+      repository: desktop
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  bumpzen:
+    kind: file
+    name: "Bump Zen version"
+    scmid: default
+    sourceid: zen
+    spec:
+      file: files/scripts/binary/install-zen.sh
+      matchpattern: "ZEN_VERSION=\".*\""
+      replacepattern: "ZEN_VERSION=\"{{ source \"zen\" }}\""
