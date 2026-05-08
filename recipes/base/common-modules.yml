@@ -142,6 +142,7 @@ modules:
           - org.gimp.GIMP
           - io.podman_desktop.PodmanDesktop
           - org.equicord.equibop
+          - com.bitwarden.desktop
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: fonts

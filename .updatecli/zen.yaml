@@ -18,7 +18,7 @@ actions:
     kind: github/pullrequest
     scmid: default
     spec:
-      title: "ci: Bump `ZEN` version to {{ source \"zen\" }}"
+      title: 'ci: Bump `ZEN` version to {{ source "zen" }}'
       automerge: false
       description: |
         Bump `ZEN` version
@@ -49,5 +49,5 @@ targets:
     sourceid: zen
     spec:
       file: files/scripts/binary/install-zen.sh
-      matchpattern: "ZEN_VERSION=\".*\""
-      replacepattern: "ZEN_VERSION=\"{{ source \"zen\" }}\""
+      matchpattern: 'ZEN_VERSION=".*"'
+      replacepattern: 'ZEN_VERSION="{{ source "zen" }}"'
