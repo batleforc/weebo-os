@@ -1,4 +1,9 @@
 policies:
+  - name: cocogitto
+    config:
+      - .updatecli/cocogitto.yaml
+    values:
+      - .updatecli/vars.yaml
   - name: eza
     config:
       - .updatecli/eza.yaml
@@ -12,6 +17,11 @@ policies:
   - name: netbird
     config:
       - .updatecli/netbird.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: rmux
+    config:
+      - .updatecli/rmux.yaml
     values:
       - .updatecli/vars.yaml
   - name: zmkbtx

@@ -1,0 +1,53 @@
+name: Upgrade cocogitto
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumpcocogitto:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `cocogitto` version to {{ source "cocogitto" }}'
+      automerge: false
+      description: |
+        Bump `cocogitto` version
+        - `cocogitto` version: {{ source "cocogitto" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  cocogitto:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: cocogitto
+      repository: cocogitto
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimPrefix: "v"
+
+targets:
+  bumpcocogitto:
+    kind: file
+    name: "Bump cocogitto version"
+    scmid: default
+    sourceid: cocogitto
+    spec:
+      file: files/scripts/binary/install-cocogitto.sh
+      matchpattern: 'COCOGITTO_VERSION=".*"'
+      replacepattern: 'COCOGITTO_VERSION="{{ source "cocogitto" }}"'

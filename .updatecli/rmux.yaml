@@ -1,0 +1,51 @@
+name: Upgrade rmux
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumprmux:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `rmux` version to {{ source "rmux" }}'
+      automerge: false
+      description: |
+        Bump `rmux` version
+        - `rmux` version: {{ source "rmux" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  rmux:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: Helvesec
+      repository: rmux
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+
+targets:
+  bumprmux:
+    kind: file
+    name: "Bump rmux version"
+    scmid: default
+    sourceid: rmux
+    spec:
+      file: files/scripts/binary/install-rmux.sh
+      matchpattern: 'RMUX_VERSION=".*"'
+      replacepattern: 'RMUX_VERSION="{{ source "rmux" }}"'
