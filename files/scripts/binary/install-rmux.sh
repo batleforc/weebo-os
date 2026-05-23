@@ -19,6 +19,7 @@ tar -xzf rmux.tar.gz
 
 # Install the binary to /usr/bin
 mkdir -p /usr/bin
+ls -la 
 install -m 755 rmux /usr/bin/rmux
 
 # Clean up
