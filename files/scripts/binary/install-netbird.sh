@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install Netbird from prebuilt binary
 
-NETBIRD_VERSION="0.71.3"
+NETBIRD_VERSION="0.71.4"
 
 TEMP_DIR=$(mktemp -d)
 
