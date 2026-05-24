@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install CocoGitto
 
-COCOGITTO_VERSION="6.5.0"
+COCOGITTO_VERSION="7.0.0"
 TEMP_DIR="$(mktemp -d)"
 
 echo "Installing CocoGitto ${COCOGITTO_VERSION} from prebuilt binary..."
