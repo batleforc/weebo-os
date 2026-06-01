@@ -180,6 +180,7 @@ modules:
       - binary/install-zed.sh
       - binary/install-zen.sh
       - binary/install-rmux.sh
+      - binary/install-resumectl.sh
       # Finalise image
       - addimageinfo.sh # Replace with https://blue-build.org/reference/modules/os-release/ ?
       - finalise.sh
