@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install Zen
 
-ZEN_VERSION="1.20.1b"
+ZEN_VERSION="1.20.2b"
 TEMP_DIR="$(mktemp -d)"
 
 echo "Installing Zen ${ZEN_VERSION} from prebuilt binary..."
