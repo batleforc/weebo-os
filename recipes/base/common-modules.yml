@@ -41,6 +41,8 @@ modules:
         - fastfetch
         - yq
         - gitleaks
+        - ripgrep
+        - luarocks
 
         # utilities
         #- distrobox
