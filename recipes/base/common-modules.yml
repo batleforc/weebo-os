@@ -43,6 +43,7 @@ modules:
         - gitleaks
         - ripgrep
         - luarocks
+        - fd
 
         # utilities
         #- distrobox
