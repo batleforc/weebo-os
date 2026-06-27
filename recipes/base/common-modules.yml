@@ -122,6 +122,7 @@ modules:
         - baobab
         - HeadsetControl
         - solaar
+        - fuse-libs
     remove:
       packages:
         - firefox
