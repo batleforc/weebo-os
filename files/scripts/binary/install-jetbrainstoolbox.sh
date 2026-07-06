@@ -22,7 +22,7 @@ mkdir -p /opt/jetbrains-toolbox
 cp -r jetbrains-toolbox-*/* /opt/jetbrains-toolbox/
 
 # Create a symbolic link to the binary in /usr/bin
-ln -s /opt/jetbrains-toolbox/jetbrains-toolbox /usr/bin/
+ln -s /opt/jetbrains-toolbox/bin/jetbrains-toolbox /usr/bin/
 
 # Clean up
 cd -
