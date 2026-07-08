@@ -124,7 +124,7 @@ modules:
         - solaar
         - fuse-libs
         - lutris
-        - webkitgtk
+        - webkit2gtk4.1
         - gtk3-devel
     remove:
       packages:
