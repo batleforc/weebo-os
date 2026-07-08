@@ -124,6 +124,8 @@ modules:
         - solaar
         - fuse-libs
         - lutris
+        - webkitgtk
+        - gtk3-devel
     remove:
       packages:
         - firefox
