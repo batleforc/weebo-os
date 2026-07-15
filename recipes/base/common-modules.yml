@@ -64,6 +64,9 @@ modules:
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
         - google-noto-emoji-fonts
 
+        # Logi
+        - https://github.com/AprilNEA/OpenLogi/releases/download/v0.6.19/openlogi-v0.6.19-linux-amd64.rpm
+
         # Rust !
         - rust
         - cargo
@@ -121,7 +124,6 @@ modules:
         - inotify-tools
         - baobab
         - HeadsetControl
-        - solaar
         - fuse-libs
         - lutris
         - webkit2gtk4.1
