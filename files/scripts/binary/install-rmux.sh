@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install rmux from prebuilt binary
 
-RMUX_VERSION="v0.8.0"
+RMUX_VERSION="v0.9.0"
 TEMP_DIR=$(mktemp -d)
 
 echo "Installing rmux ${RMUX_VERSION} from prebuilt binary..."
