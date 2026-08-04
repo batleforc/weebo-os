@@ -48,6 +48,45 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 
+## Secure Boot
+
+The kernel shipped in Weebo-OS images is signed with a project-specific
+**Machine Owner Key (MOK)**. To boot with UEFI Secure Boot enabled you need to
+enroll the matching public key **once** on each machine:
+
+```
+ujust enroll-secure-boot-key
+```
+
+This queues the key (`/etc/pki/akmods/certs/akmods-weebo-os.der`) for enrollment
+and asks you to set a one-time password. On the **next reboot** the blue *MOK
+Manager* screen appears — choose `Enroll MOK → Continue → Yes`, enter that same
+password, then reboot. Secure Boot can then stay enabled in your firmware.
+
+Prefer to do it manually?
+
+```
+sudo mokutil --import /etc/pki/akmods/certs/akmods-weebo-os.der
+# reboot, then complete enrollment in the MOK Manager
+```
+
+> [!NOTE]
+> Container image signing (cosign, see below) and Secure Boot are independent:
+> cosign proves *where the image came from*, Secure Boot lets the *firmware*
+> verify the kernel at boot.
+
+### Maintainer note
+
+The signing keypair is a standard MOK pair:
+
+- `files/system/etc/pki/akmods/certs/akmods-weebo-os.der` — public cert, committed
+  and shipped in the image.
+- `MOK.priv` — PEM private key, **never committed**. Stored as the
+  `SB_PRIVATE_KEY` GitHub Actions secret and written to `.secure_files/MOK.priv`
+  at build time. For local builds, drop your own `.secure_files/MOK.priv`
+  (git-ignored); without it the build still succeeds but the kernel is left
+  unsigned.
+
 ## Troubleshooting
 
 - In case of chrome app breaking chrome's font on startup:

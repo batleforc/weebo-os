@@ -27,6 +27,21 @@ jobs:
           - recipe.yml
           - niri.yml
     steps:
+      # We check out ourselves (skip_checkout below) so that the Secure Boot
+      # signing key we write next survives into the build workspace.
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Write the Secure Boot private key (MOK) so the kernel can be signed.
+      # For forks / missing secret this is an empty file and signkernel.sh
+      # gracefully skips signing (image still builds, just unsigned).
+      - name: Provision Secure Boot signing key
+        env:
+          SB_PRIVATE_KEY: ${{ secrets.SB_PRIVATE_KEY }}
+        run: |
+          mkdir -p .secure_files
+          printf '%s' "$SB_PRIVATE_KEY" > .secure_files/MOK.priv
+
       # the build is fully handled by the reusable github action
       - name: Build Custom Image
         uses: blue-build/github-action@v1.12
@@ -35,6 +50,8 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
+          # we already checked out (above) to keep the signing key in the workspace
+          skip_checkout: true
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true

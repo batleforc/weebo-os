@@ -7,14 +7,24 @@ tasks:
       recipe: '{{.recipe | default "recipe" }}'
     cmds:
       - bluebuild generate ./recipes/{{ .recipe }}.yml -o Containerfile
+  mok-stub:
+    desc: "Ensure the Secure Boot key file exists so local builds don't fail on the secret mount"
+    internal: true
+    cmds:
+      - mkdir -p .secure_files
+      - test -f .secure_files/MOK.priv || touch .secure_files/MOK.priv
+    status:
+      - test -f .secure_files/MOK.priv
   oci:
     desc: "Build boot-c oci image"
+    deps: [mok-stub]
     vars:
       recipe: '{{.recipe | default "recipe" }}'
     cmds:
       - bluebuild build ./recipes/{{ .recipe }}.yml
   oci-local:
     desc: "Build boot-c oci image for local use"
+    deps: [mok-stub]
     vars:
       recipe: '{{.recipe | default "recipe" }}'
     cmds:
