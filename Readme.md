@@ -58,17 +58,31 @@ enroll the matching public key **once** on each machine:
 ujust enroll-secure-boot-key
 ```
 
-This queues the key (`/etc/pki/akmods/certs/akmods-weebo-os.der`) for enrollment
-and asks you to set a one-time password. On the **next reboot** the blue *MOK
-Manager* screen appears — choose `Enroll MOK → Continue → Yes`, enter that same
-password, then reboot. Secure Boot can then stay enabled in your firmware.
+This queues **two** keys for enrollment with the enrollment password
+`universalblue`:
+
+- `/etc/pki/akmods/certs/akmods-weebo-os.der` — signs the kernel (Weebo-OS).
+- `/etc/pki/akmods/certs/akmods-ublue.der` — signs the akmods kernel modules
+  (nvidia, etc.) shipped by the Universal Blue base image.
+
+On the **next reboot** the blue *MOK Manager* screen appears — choose
+`Enroll MOK → Continue → Yes`, enter `universalblue` (*QWERTY* layout), then
+reboot. Secure Boot can then stay enabled in your firmware.
 
 Prefer to do it manually?
 
 ```
-sudo mokutil --import /etc/pki/akmods/certs/akmods-weebo-os.der
+sudo mokutil --import /etc/pki/akmods/certs/akmods-weebo-os.der /etc/pki/akmods/certs/akmods-ublue.der
 # reboot, then complete enrollment in the MOK Manager
 ```
+
+> [!NOTE]
+> `ublue-os-just` ships its own `enroll-secure-boot-key` recipe that only enrolls
+> `akmods-ublue.der`. Because `just` resolves duplicate recipe names to the
+> *shallowest* import, a recipe added through the BlueBuild `justfiles` module
+> (import depth 2) is silently ignored. `files/scripts/install-secureboot-just.sh`
+> therefore appends our recipe to the root `/usr/share/ublue-os/justfile`, which is
+> the only placement that takes precedence, and hard-fails the build if it does not.
 
 > [!NOTE]
 > Container image signing (cosign, see below) and Secure Boot are independent:

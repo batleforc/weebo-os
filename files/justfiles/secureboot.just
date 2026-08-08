@@ -1,24 +1,25 @@
 # vim: set ft=make :
 
-# Enroll the Weebo-OS Secure Boot signing key so the signed kernel boots with Secure Boot enabled
+# Enroll the Weebo-OS Secure Boot keys - Reboot and enter "universalblue" in the MOK Manager
 enroll-secure-boot-key:
-    #!/usr/bin/env bash
+    #!/usr/bin/bash
     set -euo pipefail
-    KEY=/etc/pki/akmods/certs/akmods-weebo-os.der
-    if [[ ! -f "$KEY" ]]; then
-        echo "Secure Boot key not found at $KEY — is this a Weebo-OS image?"
-        exit 1
+    ENROLLMENT_PASSWORD="universalblue"
+    # akmods-weebo-os.der signs the kernel (files/scripts/signkernel.sh), akmods-ublue.der
+    # signs the akmods kernel modules shipped by the Universal Blue base image. Both are
+    # needed for a fully working system with Secure Boot enabled.
+    KEYS=()
+    for KEY in /etc/pki/akmods/certs/akmods-weebo-os.der /etc/pki/akmods/certs/akmods-ublue.der; do
+      if [ -f "$KEY" ]; then
+        KEYS+=("$KEY")
+      else
+        echo "Skipping missing key: $KEY"
+      fi
+    done
+    if [ "${#KEYS[@]}" -eq 0 ]; then
+      echo "No Secure Boot key found in /etc/pki/akmods/certs - is this a Weebo-OS image?"
+      exit 1
     fi
-    if ! mokutil --sb-state 2>/dev/null | grep -qi enabled; then
-        echo "Note: Secure Boot appears to be disabled in firmware. Enrolling anyway;"
-        echo "the key will be used once you enable Secure Boot in your UEFI settings."
-        echo
-    fi
-    echo "You will now be asked to create a one-time enrollment password."
-    echo "Remember it: you must type the SAME password in the blue 'MOK Manager'"
-    echo "screen that appears on the NEXT reboot to finish enrolling the key."
-    echo
-    sudo mokutil --import "$KEY"
-    echo
-    echo "Key queued for enrollment. Reboot, then in the MOK Manager choose:"
-    echo "  Enroll MOK -> Continue -> Yes -> enter the password you just set -> reboot"
+    sudo mokutil --timeout -1
+    echo -e "$ENROLLMENT_PASSWORD\n$ENROLLMENT_PASSWORD" | sudo mokutil --import "${KEYS[@]}"
+    echo -e 'At next reboot, the mokutil UEFI menu UI will be displayed (*QWERTY* keyboard input and navigation).\nThen, select "Enroll MOK", and input "universalblue" as the password'

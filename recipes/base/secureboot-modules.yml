@@ -30,8 +30,19 @@ modules:
     scripts:
       - signkernel.sh
 
-  # `ujust enroll-secure-boot-key` helper for enrolling the public key
-  - type: justfiles
-    validate: false
-    include:
-      - secureboot.just
+  # `ujust enroll-secure-boot-key` helper for enrolling the public key.
+  #
+  # This deliberately does NOT use the `justfiles` module: that module imports recipes
+  # from /usr/share/ublue-os/just/60-custom.just, i.e. at import depth 2, and `just`
+  # always resolves duplicate recipe names to the shallowest definition. ublue-os-just
+  # defines `enroll-secure-boot-key` at depth 1 (00-default.just), so a depth-2 copy is
+  # silently ignored. install-secureboot-just.sh appends the recipe to the root justfile
+  # instead, which is the only placement that wins.
+  - type: files
+    files:
+      - source: justfiles
+        destination: /usr/share/weebo-os/just
+
+  - type: script
+    scripts:
+      - install-secureboot-just.sh
