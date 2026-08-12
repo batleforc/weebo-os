@@ -24,7 +24,7 @@ jobs:
       matrix:
         recipe:
           # !! Add your recipes here
-          - recipe.yml
+          #- recipe.yml
           - niri.yml
     steps:
       # We check out ourselves (skip_checkout below) so that the Secure Boot
