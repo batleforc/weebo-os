@@ -48,6 +48,59 @@ To rebase an existing atomic Fedora installation to the latest build:
   ```
 
 
+## Secure Boot
+
+The kernel shipped in Weebo-OS images is signed with a project-specific
+**Machine Owner Key (MOK)**. To boot with UEFI Secure Boot enabled you need to
+enroll the matching public key **once** on each machine:
+
+```
+ujust enroll-secure-boot-key
+```
+
+This queues **two** keys for enrollment with the enrollment password
+`universalblue`:
+
+- `/etc/pki/akmods/certs/akmods-weebo-os.der` — signs the kernel (Weebo-OS).
+- `/etc/pki/akmods/certs/akmods-ublue.der` — signs the akmods kernel modules
+  (nvidia, etc.) shipped by the Universal Blue base image.
+
+On the **next reboot** the blue *MOK Manager* screen appears — choose
+`Enroll MOK → Continue → Yes`, enter `universalblue` (*QWERTY* layout), then
+reboot. Secure Boot can then stay enabled in your firmware.
+
+Prefer to do it manually?
+
+```
+sudo mokutil --import /etc/pki/akmods/certs/akmods-weebo-os.der /etc/pki/akmods/certs/akmods-ublue.der
+# reboot, then complete enrollment in the MOK Manager
+```
+
+> [!NOTE]
+> `ublue-os-just` ships its own `enroll-secure-boot-key` recipe that only enrolls
+> `akmods-ublue.der`. Because `just` resolves duplicate recipe names to the
+> *shallowest* import, a recipe added through the BlueBuild `justfiles` module
+> (import depth 2) is silently ignored. `files/scripts/install-secureboot-just.sh`
+> therefore appends our recipe to the root `/usr/share/ublue-os/justfile`, which is
+> the only placement that takes precedence, and hard-fails the build if it does not.
+
+> [!NOTE]
+> Container image signing (cosign, see below) and Secure Boot are independent:
+> cosign proves *where the image came from*, Secure Boot lets the *firmware*
+> verify the kernel at boot.
+
+### Maintainer note
+
+The signing keypair is a standard MOK pair:
+
+- `files/system/etc/pki/akmods/certs/akmods-weebo-os.der` — public cert, committed
+  and shipped in the image.
+- `MOK.priv` — PEM private key, **never committed**. Stored as the
+  `SB_PRIVATE_KEY` GitHub Actions secret and written to `.secure_files/MOK.priv`
+  at build time. For local builds, drop your own `.secure_files/MOK.priv`
+  (git-ignored); without it the build still succeeds but the kernel is left
+  unsigned.
+
 ## Troubleshooting
 
 - In case of chrome app breaking chrome's font on startup:

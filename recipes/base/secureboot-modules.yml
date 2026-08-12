@@ -1,0 +1,48 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/module-list-v1.json
+# Secure Boot support: sign the kernel with the Weebo-OS Machine Owner Key (MOK)
+# so it boots on machines with UEFI Secure Boot enabled once the user enrolls the
+# public key (`ujust enroll-secure-boot-key`).
+#
+# The public key (DER) is shipped to /etc/pki/akmods/certs/akmods-weebo-os.der by
+# the base `files` module (files/system/...). The private key is provided at build
+# time as a secret:
+#   - CI: written from the `SB_PRIVATE_KEY` GitHub Actions secret (see build.yml)
+#   - local: place a PEM private key at ./.secure_files/MOK.priv (git-ignored)
+# When no key is present, signkernel.sh skips signing so the build still succeeds.
+modules:
+  # sbsign/sbverify, used by signkernel.sh
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - sbsigntools
+
+  - type: script
+    env:
+      PUBLIC_KEY_DER_PATH: /etc/pki/akmods/certs/akmods-weebo-os.der
+    secrets:
+      - type: file
+        source: ./.secure_files/MOK.priv
+        mount:
+          type: file
+          destination: /tmp/certs/private_key.priv
+    scripts:
+      - signkernel.sh
+
+  # `ujust enroll-secure-boot-key` helper for enrolling the public key.
+  #
+  # This deliberately does NOT use the `justfiles` module: that module imports recipes
+  # from /usr/share/ublue-os/just/60-custom.just, i.e. at import depth 2, and `just`
+  # always resolves duplicate recipe names to the shallowest definition. ublue-os-just
+  # defines `enroll-secure-boot-key` at depth 1 (00-default.just), so a depth-2 copy is
+  # silently ignored. install-secureboot-just.sh appends the recipe to the root justfile
+  # instead, which is the only placement that wins.
+  - type: files
+    files:
+      - source: justfiles
+        destination: /usr/share/weebo-os/just
+
+  - type: script
+    scripts:
+      - install-secureboot-just.sh

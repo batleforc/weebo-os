@@ -200,4 +200,7 @@ modules:
         - netbird-ui.service
         - zmkbtx.service
 
+  # Secure Boot: sign the kernel with the Weebo-OS MOK
+  - from-file: base/secureboot-modules.yml
+
   - type: signing
