@@ -30,7 +30,7 @@ jobs:
       # We check out ourselves (skip_checkout below) so that the Secure Boot
       # signing key we write next survives into the build workspace.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # Write the Secure Boot private key (MOK) so the kernel can be signed.
       # For forks / missing secret this is an empty file and signkernel.sh
