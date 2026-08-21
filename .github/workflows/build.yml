@@ -50,6 +50,7 @@ jobs:
           cosign_private_key: ${{ secrets.SIGNING_SECRET }}
           registry_token: ${{ github.token }}
           pr_event_number: ${{ github.event.number }}
+          build_opts: -vv
           # we already checked out (above) to keep the signing key in the workspace
           skip_checkout: true
 
