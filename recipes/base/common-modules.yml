@@ -126,7 +126,10 @@ modules:
         - HeadsetControl
         - fuse-libs
         - lutris
-        - webkit2gtk4.1
+        - webkit2gtk4.1-devel
+        - javascriptcoregtk4.1-devel
+        - libsoup3-devel
+        - libayatana-appindicator-gtk3-devel
         - gtk3-devel
         - solaar
     remove:
