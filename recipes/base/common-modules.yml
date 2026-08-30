@@ -132,6 +132,7 @@ modules:
         - libayatana-appindicator-gtk3-devel
         - gtk3-devel
         - solaar
+        - librsvg2-devel
     remove:
       packages:
         - firefox
