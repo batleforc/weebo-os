@@ -1,0 +1,18 @@
+modules:
+  # DankMaterialShell, the desktop shell used by the niri and niri-vm images.
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - avengemedia/dms
+    install:
+      install-weak-deps: false
+      packages:
+        - dms
+  - type: script
+    scripts:
+      - niri/init.sh
+  - type: systemd
+    user:
+      enabled:
+        - dms

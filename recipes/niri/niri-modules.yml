@@ -1,23 +1,14 @@
 modules:
+  # The niri compositor and the Mesa bits it needs. The desktop shell that runs
+  # on top is picked per recipe: dms-modules.yml for DankMaterialShell,
+  # niri-13/noctalia-modules.yml for Noctalia.
   - type: dnf
-    repos:
-      copr:
-        enable:
-          - avengemedia/dms
     install:
       install-weak-deps: false
       packages:
         - niri
-        - dms
         - mesa-dri-drivers
         - mesa-libGL
         - mesa-libEGL
         - mesa-libgbm
         - mesa-vulkan-drivers
-  - type: script
-    scripts:
-      - niri/init.sh
-  - type: systemd
-    user:
-      enable:
-        - dms

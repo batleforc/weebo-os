@@ -39,3 +39,13 @@ policies:
       - .updatecli/zen.yaml
     values:
       - .updatecli/vars.yaml
+  - name: fastflowlm
+    config:
+      - .updatecli/fastflowlm.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: lemonade
+    config:
+      - .updatecli/lemonade.yaml
+    values:
+      - .updatecli/vars.yaml

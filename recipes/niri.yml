@@ -14,3 +14,4 @@ image-version: 44
 modules:
   - from-file: base/common-modules.yml
   - from-file: niri/niri-modules.yml
+  - from-file: niri/dms-modules.yml

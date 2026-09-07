@@ -1,0 +1,35 @@
+modules:
+  # AMD XDNA userspace stack.
+  #
+  # The amdxdna kernel driver is in-tree from Linux 7.0 onwards and already
+  # binds the NPU to /dev/accel/accel0, so no kmod is layered here. What the
+  # amd/xdna-driver repository actually provides on top of that is the
+  # userspace half: the XRT runtime and the xdna shim that drives it. These
+  # come from a Fedora repack of that repository rather than a source build.
+  - type: dnf
+    repos:
+      copr:
+        enable:
+          - darrencocco/ryzen-ai-npu
+    install:
+      install-weak-deps: false
+      # xrt-base requires ocl-icd, while the ublue base image ships the other
+      # Fedora OpenCL loader, OpenCL-ICD-Loader, and the two conflict. Nothing
+      # in the base requires that package by name and ocl-icd provides the same
+      # libOpenCL.so.1, so the swap is safe: allow dnf to make it.
+      allow-erasing: true
+      packages:
+        - xrt-base # XRT runtime, xrt-smi, xclbinutil
+        - xrt-npu # NPU profiling and tracing plugins
+        - xrt-plugin-amdxdna # libxrt_driver_xdna shim + memlock limits
+
+  # Raise RLIMIT_MEMLOCK for systemd user services, which pam_limits misses.
+  - type: files
+    files:
+      - source: npu
+        destination: /
+
+  - type: script
+    scripts:
+      - binary/install-fastflowlm.sh
+      - binary/install-lemonade.sh

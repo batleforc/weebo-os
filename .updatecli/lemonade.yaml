@@ -1,0 +1,53 @@
+name: Upgrade Lemonade Server
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumplemonade:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `Lemonade Server` version to {{ source "lemonade" }}'
+      automerge: false
+      description: |
+        Bump `Lemonade Server` version
+        - `Lemonade Server` version: {{ source "lemonade" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  lemonade:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: lemonade-sdk
+      repository: lemonade
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  bumplemonade:
+    kind: file
+    name: "Bump Lemonade Server version"
+    scmid: default
+    sourceid: lemonade
+    spec:
+      file: files/scripts/binary/install-lemonade.sh
+      matchpattern: 'LEMONADE_VERSION=".*"'
+      replacepattern: 'LEMONADE_VERSION="{{ source "lemonade" }}"'

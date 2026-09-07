@@ -1,0 +1,19 @@
+modules:
+  # Noctalia, the desktop shell for this image, in place of the DankMaterialShell
+  # the other niri recipes use. Fedora 44 packages it directly, so there is no
+  # COPR to enable and no version to pin: dnf tracks it like any other package.
+  #
+  # ddcutil is optional but the shell shells out to it to drive the brightness
+  # of external monitors over DDC/CI; without it only the internal panel's
+  # backlight is controllable.
+  #
+  # Nothing enables the shell here. Noctalia's upstream recommendation is to let
+  # the compositor start it, so the dotfiles carry `spawn-at-startup "noctalia"`
+  # in the niri config. An image-level systemd unit on top of that would start a
+  # second instance.
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - noctalia
+        - ddcutil

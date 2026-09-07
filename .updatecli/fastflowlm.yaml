@@ -1,0 +1,53 @@
+name: Upgrade FastFlowLM
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bumpfastflowlm:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `FastFlowLM` version to {{ source "fastflowlm" }}'
+      automerge: false
+      description: |
+        Bump `FastFlowLM` version
+        - `FastFlowLM` version: {{ source "fastflowlm" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  fastflowlm:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: FastFlowLM
+      repository: FastFlowLM
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  bumpfastflowlm:
+    kind: file
+    name: "Bump FastFlowLM version"
+    scmid: default
+    sourceid: fastflowlm
+    spec:
+      file: files/scripts/binary/install-fastflowlm.sh
+      matchpattern: 'FASTFLOWLM_VERSION=".*"'
+      replacepattern: 'FASTFLOWLM_VERSION="{{ source "fastflowlm" }}"'
