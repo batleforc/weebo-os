@@ -14,7 +14,7 @@ set -oue pipefail
 # binary. It therefore does not depend on the system XRT packages installed
 # alongside it, and the two can differ in version without conflicting.
 
-FASTFLOWLM_VERSION="1.0.4"
+FASTFLOWLM_VERSION="1.0.5"
 
 TEMP_DIR=$(mktemp -d)
 trap 'rm -rf "${TEMP_DIR}"' EXIT
