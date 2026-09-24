@@ -13,7 +13,7 @@ set -oue pipefail
 # first use into the user's cache. NPU offload on Linux goes through
 # FastFlowLM, which needs an XDNA2 part - see install-fastflowlm.sh.
 
-LEMONADE_VERSION="11.9.0"
+LEMONADE_VERSION="2026.39.1"
 
 FEDORA_VERSION="$(. /usr/lib/os-release && echo "${VERSION_ID}")"
 RPM_NAME="lemonade-server-${LEMONADE_VERSION}-fc${FEDORA_VERSION}.x86_64.rpm"
