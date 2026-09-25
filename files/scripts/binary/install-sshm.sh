@@ -3,7 +3,7 @@
 set -oue pipefail
 
 # Install SSHM
-SSHM_VERSION="2.2.0"
+SSHM_VERSION="2.2.1"
 SSHM_REPO="Sn0wAlice/sshm"
 TEMP_DIR="$(mktemp -d)"
 
