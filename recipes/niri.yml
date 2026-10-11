@@ -15,3 +15,4 @@ modules:
   - from-file: base/common-modules.yml
   - from-file: niri/niri-modules.yml
   - from-file: niri/dms-modules.yml
+  - from-file: base/game.yml
