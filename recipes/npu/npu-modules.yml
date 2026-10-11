@@ -1,4 +1,4 @@
-
+modules:
   # AMD XDNA userspace stack.
   #
   # The amdxdna kernel driver is in-tree from Linux 7.0 onwards and already
