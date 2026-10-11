@@ -9,10 +9,10 @@ FW_CONTROL_VERSION="0.5.3"
 TEMP_DIR="$(mktemp -d)"
 
 echo "Installing Framework system ${FW_SYSTEM_VERSION} from prebuilt binary..."
-curl -L "https://github.com/FrameworkComputer/framework-system/releases/download/v${FW_SYSTEM_VERSION}/framework_tool" -o framework_tool
+curl -fL "https://github.com/FrameworkComputer/framework-system/releases/download/v${FW_SYSTEM_VERSION}/framework_tool" -o framework_tool
 
 echo "Installing Framework control ${FW_CONTROL_VERSION} from prebuilt binary..."
-curl -L "https://github.com/ozturkkl/framework-control/releases/download/${FW_CONTROL_VERSION}/framework-control-service-x86_64.tar.gz" -o framework_control.tar.gz
+curl -fL "https://github.com/ozturkkl/framework-control/releases/download/${FW_CONTROL_VERSION}/framework-control-service-x86_64.tar.gz" -o framework_control.tar.gz
 
 # Extract the control binary
 tar -xzf framework_control.tar.gz

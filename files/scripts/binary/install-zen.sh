@@ -12,7 +12,7 @@ echo "Installing Zen ${ZEN_VERSION} from prebuilt binary..."
 cd "${TEMP_DIR}"
 
 # Download the prebuilt binary for x86_64 Linux
-curl -L "https://github.com/zen-browser/desktop/releases/download/${ZEN_VERSION}/zen.linux-x86_64.tar.xz" -o zen.tar.xz
+curl -fL "https://github.com/zen-browser/desktop/releases/download/${ZEN_VERSION}/zen.linux-x86_64.tar.xz" -o zen.tar.xz
 
 # Extract the binary
 tar -xf zen.tar.xz

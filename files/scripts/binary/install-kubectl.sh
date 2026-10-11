@@ -13,7 +13,7 @@ echo "Installing kubectl ${KUBECTL_VERSION}, Krew latest, K9S ${K9S_VERSION} fro
 cd "${TEMP_DIR}"
 # Install kubectl
 
-curl -LO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
+curl -fLO "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl"
 install -m 755 kubectl /usr/bin/kubectl
 echo "kubectl installed successfully at /usr/bin/kubectl"
 
@@ -30,7 +30,7 @@ echo "kubectl installed successfully at /usr/bin/kubectl"
 echo "Krew installed successfully"
 
 # Install K9S
-curl -LO "https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_amd64.tar.gz"
+curl -fLO "https://github.com/derailed/k9s/releases/download/${K9S_VERSION}/k9s_Linux_amd64.tar.gz"
 tar -xzf k9s_Linux_amd64.tar.gz
 install -m 755 k9s /usr/bin/k9s
 echo "K9S installed successfully at /usr/bin/k9s"

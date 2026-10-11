@@ -12,7 +12,7 @@ cd "${TEMP_DIR}"
 
 # Download the installation script
 
-curl -L "https://zed.dev/install.sh" | sh
+curl -fL "https://zed.dev/install.sh" | sh
 
 # Clean up
 cd -

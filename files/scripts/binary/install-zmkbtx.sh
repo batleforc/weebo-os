@@ -11,7 +11,7 @@ echo "Installing zmkbtx ${ZMKBTX_VERSION} from prebuilt binary..."
 cd "${TEMP_DIR}"
 
 # Download the prebuilt binary for x86_64 Linux
-curl -L "https://github.com/mh4x0f/zmkBATx/releases/download/v${ZMKBTX_VERSION}/zmkBATx-${ZMKBTX_VERSION}-linux64.tar.xz" -o zmkbtx.tar.xz
+curl -fL "https://github.com/mh4x0f/zmkBATx/releases/download/v${ZMKBTX_VERSION}/zmkBATx-${ZMKBTX_VERSION}-linux64.tar.xz" -o zmkbtx.tar.xz
 
 # Extract the binary
 tar -xf zmkbtx.tar.xz

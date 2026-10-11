@@ -12,7 +12,7 @@ echo "Installing JetBrains Toolbox ${JETBRAINS_TOOLBOX_VERSION} from prebuilt bi
 cd "${TEMP_DIR}"
 
 # Download the prebuilt binary for x86_64 Linux
-curl -L "https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz" -o jetbrains-toolbox.tar.gz
+curl -fL "https://download.jetbrains.com/toolbox/jetbrains-toolbox-${JETBRAINS_TOOLBOX_VERSION}.tar.gz" -o jetbrains-toolbox.tar.gz
 
 # Extract the binary
 tar -xzf jetbrains-toolbox.tar.gz

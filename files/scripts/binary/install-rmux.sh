@@ -12,7 +12,7 @@ echo "Installing rmux ${RMUX_VERSION} from prebuilt binary..."
 cd "${TEMP_DIR}"
 
 # Download the prebuilt binary for x86_64 Linux
-curl -L "https://github.com/Helvesec/rmux/releases/download/${RMUX_VERSION}/rmux-${RMUX_VERSION}-x86_64-unknown-linux-gnu.tar.gz" -o rmux.tar.gz
+curl -fL "https://github.com/Helvesec/rmux/releases/download/${RMUX_VERSION}/rmux-${RMUX_VERSION}-x86_64-unknown-linux-gnu.tar.gz" -o rmux.tar.gz
 
 # Extract the binary
 tar -xzf rmux.tar.gz
