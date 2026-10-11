@@ -1,5 +1,10 @@
 modules:
   - type: dnf
+    repos:
+      copr:
+        enable:
+          - "@xr-sig/xrizer"
     install:
       packages:
         - wivrn
+        - xrizer
