@@ -64,9 +64,6 @@ modules:
         - https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
         - google-noto-emoji-fonts
 
-        # Logi
-        #- https://github.com/AprilNEA/OpenLogi/releases/download/v0.6.19/openlogi-v0.6.19-linux-amd64.rpm
-
         # Rust !
         - rust
         - cargo
@@ -190,6 +187,7 @@ modules:
       - binary/install-cocogitto.sh
       - binary/install-zmkbtx.sh
       - binary/install-sshm.sh
+      - binary/install-openlogi.sh
       - binary/install-ollama.sh
       - binary/install-zed.sh
       - binary/install-zen.sh
