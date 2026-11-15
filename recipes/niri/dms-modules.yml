@@ -1,10 +1,10 @@
 modules:
-  # DankMaterialShell, the desktop shell used by the niri and niri-vm images.
+  # Dux Modular Shell (DMS, formerly DankMaterialShell), the desktop shell used by the niri and niri-vm images.
   - type: dnf
     repos:
       copr:
         enable:
-          - avengemedia/dms
+          - duxlabs/dms
     install:
       install-weak-deps: false
       packages:

@@ -49,3 +49,28 @@ policies:
       - .updatecli/lemonade.yaml
     values:
       - .updatecli/vars.yaml
+  - name: framework
+    config:
+      - .updatecli/framework.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: jetbrains-toolbox
+    config:
+      - .updatecli/jetbrains-toolbox.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: openlogi
+    config:
+      - .updatecli/openlogi.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: resumectl
+    config:
+      - .updatecli/resumectl.yaml
+    values:
+      - .updatecli/vars.yaml
+  - name: postmortem
+    config:
+      - .updatecli/postmortem.yaml
+    values:
+      - .updatecli/vars.yaml

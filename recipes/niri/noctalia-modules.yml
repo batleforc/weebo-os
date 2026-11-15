@@ -1,5 +1,5 @@
 modules:
-  # Noctalia, the desktop shell for this image, in place of the DankMaterialShell
+  # Noctalia, the desktop shell for this image, in place of the Dux Modular Shell (DMS)
   # the other niri recipes use. Fedora 44 packages it directly, so there is no
   # COPR to enable and no version to pin: dnf tracks it like any other package.
   #

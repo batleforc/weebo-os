@@ -1,0 +1,53 @@
+name: Update OpenLogi
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `OpenLogi` to {{ source "openlogi" }}'
+      automerge: false
+      description: |
+        Bump `OpenLogi` version
+        - `openlogi` version: {{ source "openlogi" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  openlogi:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: AprilNEA
+      repository: OpenLogi
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  openlogi-version:
+    name: Update OpenLogi version in install script
+    kind: file
+    sourceid: openlogi
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-openlogi.sh
+      matchpattern: 'OPENLOGI_VERSION=".*"'
+      replacepattern: 'OPENLOGI_VERSION="{{ source "openlogi" }}"'

@@ -1,6 +1,6 @@
 modules:
   # The niri compositor and the Mesa bits it needs. The desktop shell that runs
-  # on top is picked per recipe: dms-modules.yml for DankMaterialShell,
+  # on top is picked per recipe: dms-modules.yml for Dux Modular Shell (DMS),
   # niri-13/noctalia-modules.yml for Noctalia.
   - type: dnf
     install:

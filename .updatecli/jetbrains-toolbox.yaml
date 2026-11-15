@@ -1,0 +1,48 @@
+name: Update JetBrains Toolbox
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `JetBrains Toolbox` to {{ source "jetbrains-toolbox" }}'
+      automerge: false
+      description: |
+        Bump `JetBrains Toolbox` version
+        - `jetbrains-toolbox` version: {{ source "jetbrains-toolbox" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  # JetBrains publishes Toolbox outside GitHub; its product feed carries the
+  # full build number used in the download URL (e.g. 3.6.1.85592).
+  jetbrains-toolbox:
+    kind: json
+    spec:
+      file: "https://data.services.jetbrains.com/products/releases?code=TBA&latest=true&type=release"
+      key: ".TBA.[0].build"
+
+targets:
+  jetbrains-toolbox-version:
+    name: Update JetBrains Toolbox version in install script
+    kind: file
+    sourceid: jetbrains-toolbox
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-jetbrainstoolbox.sh
+      matchpattern: 'JETBRAINS_TOOLBOX_VERSION=".*"'
+      replacepattern: 'JETBRAINS_TOOLBOX_VERSION="{{ source "jetbrains-toolbox" }}"'
