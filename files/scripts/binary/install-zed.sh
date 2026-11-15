@@ -4,10 +4,9 @@ set -oue pipefail
 
 # Install Zed
 
-ZED_VERSION="0.9.0"
 TEMP_DIR="$(mktemp -d)"
 
-echo "Installing Zed ${ZED_VERSION} from script ... "
+echo "Installing Zed (latest) from the upstream install script..."
 cd "${TEMP_DIR}"
 
 # Download the installation script

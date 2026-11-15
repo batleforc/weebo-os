@@ -1,0 +1,74 @@
+name: Update Framework tools
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `Framework tools` to {{ source "framework-system" }} and {{ source "framework-control" }}'
+      automerge: false
+      description: |
+        Bump `Framework tools` version
+        - `framework-system` version: {{ source "framework-system" }}
+        - `framework-control` version: {{ source "framework-control" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  framework-system:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: FrameworkComputer
+      repository: framework-system
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+  framework-control:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: ozturkkl
+      repository: framework-control
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+
+targets:
+  framework-system-version:
+    name: Update framework_tool version in install script
+    kind: file
+    sourceid: framework-system
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-fw.sh
+      matchpattern: 'FW_SYSTEM_VERSION=".*"'
+      replacepattern: 'FW_SYSTEM_VERSION="{{ source "framework-system" }}"'
+
+  framework-control-version:
+    name: Update framework-control version in install script
+    kind: file
+    sourceid: framework-control
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-fw.sh
+      matchpattern: 'FW_CONTROL_VERSION=".*"'
+      replacepattern: 'FW_CONTROL_VERSION="{{ source "framework-control" }}"'

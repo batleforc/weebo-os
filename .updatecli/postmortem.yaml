@@ -1,0 +1,53 @@
+name: Update postmortem (mise)
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `postmortem` to {{ source "postmortem" }}'
+      automerge: false
+      description: |
+        Bump `postmortem` version
+        - `postmortem` version: {{ source "postmortem" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  postmortem:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: mlab-sh
+      repository: postmortem
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  postmortem-version:
+    name: Update postmortem version in mise.toml
+    kind: file
+    sourceid: postmortem
+    scmid: default
+    spec:
+      file: mise.toml
+      matchpattern: '"github:mlab-sh/postmortem" = ".*"'
+      replacepattern: '"github:mlab-sh/postmortem" = "{{ source "postmortem" }}"'

@@ -1,0 +1,53 @@
+name: Update resumectl
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `resumectl` to {{ source "resumectl" }}'
+      automerge: false
+      description: |
+        Bump `resumectl` version
+        - `resumectl` version: {{ source "resumectl" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  resumectl:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: juhnny5
+      repository: resumectl
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  resumectl-version:
+    name: Update resumectl version in install script
+    kind: file
+    sourceid: resumectl
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-resumectl.sh
+      matchpattern: 'RESUMECTL_VERSION=".*"'
+      replacepattern: 'RESUMECTL_VERSION="{{ source "resumectl" }}"'

@@ -105,7 +105,7 @@ The signing keypair is a standard MOK pair:
 
 `recipes/niri-13.yml` builds `weebo-os-niri-13` for the second laptop. It shares
 the base and the niri compositor with `niri.yml`, then differs in two ways: it
-runs Noctalia instead of DankMaterialShell, and it carries the AMD XDNA NPU
+runs Noctalia instead of Dux Modular Shell (DMS), and it carries the AMD XDNA NPU
 stack. Both live in their own module files so the other images are untouched.
 
 ### Desktop shell: Noctalia
@@ -115,7 +115,7 @@ is chosen by the recipe that includes it:
 
 | Recipe | Shell module |
 | --- | --- |
-| `niri.yml`, `niri-vm.yml` | `niri/dms-modules.yml` (DankMaterialShell, unchanged) |
+| `niri.yml`, `niri-vm.yml` | `niri/dms-modules.yml` ([Dux Modular Shell](https://github.com/duxlabs-dev/dux-shell), formerly DankMaterialShell, COPR `duxlabs/dms`) |
 | `niri-13.yml` | `niri-13/noctalia-modules.yml` ([Noctalia](https://noctalia.dev/)) |
 
 Fedora 44 packages Noctalia itself, so there is no COPR to enable and no version
