@@ -2,7 +2,9 @@
 
 set -oue pipefail
 
-# Install OpenLogi
+# Install OpenLogi, the Logitech HID++ companion (DPI, report rate, SmartShift…).
+# It replaces Solaar: its own udev rule (/etc/udev/rules.d/70-openlogi.rules)
+# grants the seat user the hidraw/uinput access solaar-udev used to provide.
 OPENLOGI_VERSION="0.9.0"
 OPENLOGI_REPO="AprilNEA/OpenLogi"
 TEMP_DIR="$(mktemp -d)"

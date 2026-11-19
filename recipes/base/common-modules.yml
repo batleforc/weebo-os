@@ -128,7 +128,6 @@ modules:
         - libsoup3-devel
         - libayatana-appindicator-gtk3-devel
         - gtk3-devel
-        - solaar
         - librsvg2-devel
     remove:
       packages:
@@ -203,6 +202,10 @@ modules:
       enabled:
         - netbird-ui.service
         - zmkbtx.service
+        # Logitech HID++ agent (installed by binary/install-openlogi.sh). It
+        # replaces Solaar, which autostarted for every user from /etc/xdg; the
+        # two would fight over the same receiver, so Solaar is not installed.
+        - openlogi-agent.service
 
   # Secure Boot: sign the kernel with the Weebo-OS MOK
   - from-file: base/secureboot-modules.yml
