@@ -64,6 +64,11 @@ policies:
       - .updatecli/openlogi.yaml
     values:
       - .updatecli/vars.yaml
+  - name: headsetcontrol
+    config:
+      - .updatecli/headsetcontrol.yaml
+    values:
+      - .updatecli/vars.yaml
   - name: resumectl
     config:
       - .updatecli/resumectl.yaml
