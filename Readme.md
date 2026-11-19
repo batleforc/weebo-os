@@ -122,6 +122,13 @@ Fedora 44 packages Noctalia itself, so there is no COPR to enable and no version
 to pin. `ddcutil` comes along with it because the shell shells out to it to set
 the brightness of external monitors over DDC/CI.
 
+The DMS images install `ddcutil` too, for a different reason: DMS speaks DDC/CI
+itself (`dms brightness list --ddc`), but it needs read/write access to
+`/dev/i2c-*`. `ddcutil` ships the udev rule (`60-ddcutil-i2c.rules`) that grants
+it to the logged-in user, and its CLI covers what the shell does not: switching
+input, picking the monitor's colour preset (sRGB on the QD-OLED), or reading
+`ddcutil capabilities`.
+
 The two shells start differently, each following its own upstream advice. DMS
 ships `dms.service` and the image enables it. Noctalia ships no unit and is
 started by the compositor, so `spawn-at-startup "noctalia"` lives in the niri
