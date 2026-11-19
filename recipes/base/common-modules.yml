@@ -17,7 +17,6 @@ modules:
           - dejan/lazygit
           - jdxcode/mise
           - atim/heroic-games-launcher
-          - birkch/HeadsetControl
     install:
       install-weak-deps: false
       packages:
@@ -120,7 +119,6 @@ modules:
         - openssl-devel
         - inotify-tools
         - baobab
-        - HeadsetControl
         - fuse-libs
         - lutris
         - webkit2gtk4.1-devel
@@ -188,6 +186,7 @@ modules:
       - binary/install-zmkbtx.sh
       - binary/install-sshm.sh
       - binary/install-openlogi.sh
+      - binary/install-headsetcontrol.sh
       - binary/install-ollama.sh
       - binary/install-zed.sh
       - binary/install-zen.sh

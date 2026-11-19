@@ -1,0 +1,53 @@
+name: Update HeadsetControl
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner}}"
+      repository: "{{ .github.repository}}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: main
+      commitusingapi: true
+
+actions:
+  bump:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: 'ci: Bump `HeadsetControl` to {{ source "headsetcontrol" }}'
+      automerge: false
+      description: |
+        Bump `HeadsetControl` version
+        - `headsetcontrol` version: {{ source "headsetcontrol" }}
+      labels:
+        - "Upgrade"
+        - "UpdateCLI"
+
+sources:
+  headsetcontrol:
+    kind: githubrelease
+    scmid: default
+    spec:
+      owner: Sapd
+      repository: HeadsetControl
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      versionFilter:
+        kind: latest
+    transformers:
+      - trimprefix: "v"
+
+targets:
+  headsetcontrol-version:
+    name: Update HeadsetControl version in install script
+    kind: file
+    sourceid: headsetcontrol
+    scmid: default
+    spec:
+      file: files/scripts/binary/install-headsetcontrol.sh
+      matchpattern: 'HEADSETCONTROL_VERSION=".*"'
+      replacepattern: 'HEADSETCONTROL_VERSION="{{ source "headsetcontrol" }}"'
