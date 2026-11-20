@@ -126,8 +126,11 @@ The DMS images install `ddcutil` too, for a different reason: DMS speaks DDC/CI
 itself (`dms brightness list --ddc`), but it needs read/write access to
 `/dev/i2c-*`. `ddcutil` ships the udev rule (`60-ddcutil-i2c.rules`) that grants
 it to the logged-in user, and its CLI covers what the shell does not: switching
-input, picking the monitor's colour preset (sRGB on the QD-OLED), or reading
-`ddcutil capabilities`.
+input, picking the monitor's colour preset, or reading `ddcutil capabilities`.
+
+They also install `qt6-qtmultimedia`, which DMS only recommends: it plays video
+wallpapers. Without it DMS logs `module "QtMultimedia" is not installed` and
+shows the still frame of an mp4 or webm wallpaper.
 
 The two shells start differently, each following its own upstream advice. DMS
 ships `dms.service` and the image enables it. Noctalia ships no unit and is
