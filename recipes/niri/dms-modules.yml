@@ -6,6 +6,9 @@ modules:
   # user to open /dev/i2c-*: ddcutil's 60-ddcutil-i2c.rules grants that to the
   # seat user. Without it, access only worked because the uBlue base happens to
   # ship openrgb-udev-rules, which nothing here asks for.
+  #
+  # qt6-qtmultimedia plays video wallpapers (mp4/webm). DMS only recommends it,
+  # and weak deps are off here, so without it DMS shows their still frame.
   - type: dnf
     repos:
       copr:
@@ -16,6 +19,7 @@ modules:
       packages:
         - dms
         - ddcutil
+        - qt6-qtmultimedia
   - type: script
     scripts:
       - niri/init.sh
