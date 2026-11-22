@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install JetBrains Toolbox
 
-JETBRAINS_TOOLBOX_VERSION="3.6.1.85592"
+JETBRAINS_TOOLBOX_VERSION="3.9.1.89198"
 TEMP_DIR=$(mktemp -d)
 
 echo "Installing JetBrains Toolbox ${JETBRAINS_TOOLBOX_VERSION} from prebuilt binary..."
