@@ -1,4 +1,4 @@
 [tools]
 claude = "latest"
 cocogitto = "latest"
-"github:mlab-sh/postmortem" = "2.1.0"
+"github:mlab-sh/postmortem" = "2.9.2"
