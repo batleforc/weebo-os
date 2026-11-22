@@ -4,7 +4,7 @@ set -oue pipefail
 
 # Install Framework tool
 
-FW_SYSTEM_VERSION="0.6.5"
+FW_SYSTEM_VERSION="0.6.7"
 FW_CONTROL_VERSION="0.5.3"
 TEMP_DIR="$(mktemp -d)"
 
