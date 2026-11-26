@@ -85,6 +85,7 @@ modules:
 
         # Build tools
         - gcc
+        - glslc
         - g++
         - cmake
         - libXrandr-devel
